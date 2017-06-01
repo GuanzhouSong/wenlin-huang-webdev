@@ -7,8 +7,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // configure a public directory to host static content
 app.use(express.static(__dirname + '/public'));
+app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
-require ("./test/app.js")(app);
+// require ("./test/app.js")(app);
 
 var port = process.env.PORT || 3000;
 

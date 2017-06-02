@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="../../../../bower_components/bootstrap-css/css/bootstrap.css" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="../../css/style.css" rel="stylesheet"/>
+    <title>New Website</title>
+</head>
+<body>
+
+<nav class="navbar navbar-fixed-top cl-blue-navbar">
+    <div class="container-fluid">
+        <a class="cl-text-white navbar-brand" href="#">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="cl-text-white navbar-brand cl-text-bold" href="#">
+            New Website
+        </a>
+        <a href="website-new.html" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="glyphicon glyphicon-ok"></span>
+        </a>
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-sm-5 hidden-xs"> <!-- col hidden in xs, 5:7 in sm & above -->
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <span class="glyphicon glyphicon-cog pull-right"></span>
+                    Address Book App
+                </li>
+                <li class="list-group-item">
+                    <span class="glyphicon glyphicon-cog pull-right"></span>
+                    Blogger
+                </li>
+                <li class="list-group-item">
+                    <span class="glyphicon glyphicon-cog pull-right"></span>
+                    Blogging App
+                </li>
+                <li class="list-group-item">
+                    <span class="glyphicon glyphicon-cog pull-right"></span>
+                    Script Testing App
+                </li>
+            </ul>
+        </div>
+
+        <span class="vertical-divider-right"></span>
+
+        <div class="col-sm-7">
+            <label for="name">Website Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Name" value="Blogger">
+            <label for="description">Website Description</label>
+            <textarea id="description" class="form-control" cols="30" rows="10" placeholder="Description">
+Blogger is a blog-publishing service that allows multi-user blogs with time-stamped entries. It was developed by Pyra Labs, which was bought by Google in 2003. Generally, the blogs are hosted by Google at a subdomain of blogspot.com. Blogs can also be hosted in the registered custom domain of the blogger (like www.example.com). A user can have up to 100 blogs per account.
+
+Up until May 1, 2010, Blogger allowed users to publish blogs on other hosts, via FTP. All such blogs had (or still have) to be moved to Google's own servers, with domains other than blogspot.com allowed via custom URLs. Unlike WordPress.com, Blogger allows its users to use their own domain free of charge, while WordPress.com charges around $13 to use a custom domain. Blogger cannot be installed on a web server. One has to use DNS facilities to redirect a custom URL to a blogspot domain.
+            </textarea>
+            <a href="" class="btn btn-danger btn-block">Delete</a>
+        </div>
+
+    </div>
+</div>
+
+
+<nav class="navbar navbar-fixed-bottom cl-blue-navbar">
+    <div class="container-fluid">
+        <a href="#" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+            <span class="glyphicon glyphicon-user"></span>
+        </a>
+    </div>
+</nav>
+
+</body>
+</html>

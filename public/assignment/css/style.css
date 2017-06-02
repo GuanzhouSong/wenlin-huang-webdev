@@ -2,7 +2,7 @@ body {
     padding-top: 70px;
     padding-bottom: 70px;
 }
-input.form-control {
+input.form-control, textarea.form-control {
     margin-bottom: 5px;
 }
 
@@ -52,9 +52,11 @@ a:hover{
     padding-bottom: 20px;
 }
 
-.cl-v-divider{
-    border-right: 1px solid #808080;
+.vertical-divider-right {
+    border-right: 1px solid #cccccc;
     height: 100%;
+    margin-top: -20px;
+    position: absolute;
 }
 
 .cl-widget-heading{
@@ -86,4 +88,8 @@ a:hover{
 }
 .cl-zero-right-padding{
     padding-right: 0px;
+}
+
+div > ul > li.list-group-item {
+    color: #337ab7;
 }

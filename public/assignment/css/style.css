@@ -19,20 +19,32 @@ a:hover{
     padding-bottom: 10%;
 }
 
-.cl-blue-navbar{
+.navbar-blue {
     background-color: #337ab7;
 }
 
-.cl-text-white{
+.navbar-gray {
+    background-color: #F9F9F9;
+}
+
+.text-white {
     color: #fff;
 }
 
-.cl-text-black{
-    color: #000000;
+.text-black {
+    color: rgba(0, 0, 0, 0.77);
 }
 
-.cl-text-bold{
+.text-dark-gray {
+    color: #777777;
+}
+
+.text-bold {
     font-weight: bold;
+}
+
+.text-blue {
+    color: #337ab7;
 }
 
 .cl-icon-padding {

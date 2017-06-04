@@ -14,11 +14,6 @@ a:hover{
     text-decoration: none;
 }
 
-.cl-container-padding {
-    padding-top: 5%;
-    padding-bottom: 10%;
-}
-
 .navbar-blue {
     background-color: #337ab7;
 }
@@ -47,21 +42,9 @@ a:hover{
     color: #337ab7;
 }
 
-.cl-icon-padding {
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.cl-header-padding{
-    padding-left: 5%;
-}
-
-.cl-full-width{
-    width: 100%;
-}
-
-.cl-widget-list-item{
-    padding-bottom: 20px;
+.icon-padding {
+    padding-left: 1.5%;
+    padding-right: 1.5%;
 }
 
 .vertical-divider-right {
@@ -71,37 +54,23 @@ a:hover{
     position: absolute;
 }
 
-.cl-widget-heading{
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
-
-.cl-widget-paragraph{
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
-
-.cl-height{
-    height: 100%;
-    min-height: 100%;
-}
-
-.cl-relative-position{
-    position: relative;
-}
-.cl-absolute-position{
-    position: absolute;
-}
-.cl-widget-list-icons{
-    top: 0px;
-    right: 0px;
-    z-index: 10;
-    background-color: white;
-}
-.cl-zero-right-padding{
-    padding-right: 0px;
-}
-
 div > ul > li.list-group-item {
     color: #337ab7;
+}
+
+.widget {
+    margin-bottom: 10px;
+    margin-right: 25px;
+}
+
+.widget > img {
+    width: 100%;
+}
+
+.widget-toolbar {
+    position: absolute;
+    right: 2px;
+    background: white;
+    padding-right: 5px;
+    border-bottom-left-radius: 10px;
 }

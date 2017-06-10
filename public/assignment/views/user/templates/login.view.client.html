@@ -1,0 +1,8 @@
+<div class="container-fluid" ng-controller="loginController as vm">
+    <div ng-show="model.message" class="alert alert-info">{{ model.message }}</div>
+    <h1>Login</h1>
+    <input ng-model="username" type="text" class="form-control" placeholder="username"/>
+    <input ng-model="password" type="password" class="form-control" placeholder="password"/>
+    <a class="btn btn-primary btn-block" ng-click="model.validateLogin(username, password)">Login</a>
+    <a class="btn btn-success btn-block" href="#!/register">Register</a>
+</div>

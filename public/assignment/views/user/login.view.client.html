@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="webAppMaker">
+<head>
+    <script src="../../../../bower_components/angular/angular.min.js"></script>
+    <script src="../../app.js"></script>
+    <script src="controllers/login.controller.client.js"></script>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="../../../../bower_components/bootstrap-css/css/bootstrap.css" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="../../css/style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container-fluid" ng-controller="loginController as vm">
+    <div ng-show="vm.message" class="alert alert-info">{{ vm.message }}</div>
+    <h1>Login</h1>
+    <input ng-model="username" type="text" class="form-control" placeholder="username"/>
+    <input ng-model="password" type="password" class="form-control" placeholder="password"/>
+    <a class="btn btn-primary btn-block" ng-click="vm.validateLogin(username, password)">Login</a>
+    <a class="btn btn-success btn-block" href="register.html">Register</a>
+</div>
+</body>
+</html>

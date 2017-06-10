@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 
-// require ("./test/app.js")(app);
+// require ("./test/login.controllers.view.js")(app);
 
 var port = process.env.PORT || 3000;
 

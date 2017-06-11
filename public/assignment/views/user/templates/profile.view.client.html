@@ -12,13 +12,13 @@
 <div class="container-fluid">
    <form class="cl-form-bottom-padding">
        <label for="username">Username</label>
-       <input type="text" class="form-control" placeholder="Username" id="username" required>
+       <input type="text" class="form-control" placeholder="Username" id="username" ng-model="model.user.username" required>
        <label for="email">Email</label>
        <input type="email" class="form-control" placeholder="alice@emmail.com" id="email" required>
        <label for="fName">First Name</label>
-       <input type="text" class="form-control" placeholder="first name" id="fName" required>
+       <input type="text" class="form-control" placeholder="first name" id="fName" ng-model="model.user.firstName" required>
        <label for="lName">Last Name</label>
-       <input type="text" class="form-control" placeholder="last name" id="lName" required>
+       <input type="text" class="form-control" placeholder="last name" id="lName"ng-model="model.user.lastName" required>
    </form>
 
     <a href="../../website/website-list.html" class="btn btn-primary btn-block">Websites</a>

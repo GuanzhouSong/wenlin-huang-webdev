@@ -15,7 +15,9 @@
             ];
 
             api.findUserById = findUserById;
+            api.findUserByUserName = findUserByUserName;
             api.findUserByCredentials = findUserByCredentials;
+            api.createUser = createUser;
 
             return api;
 
@@ -25,6 +27,13 @@
                         return users[u];
                 }
                 return null;
+            }
+
+            function findUserByUserName(username) {
+                var userFound = users.find(function (user) {
+                    return user.username === username;
+                })
+                return typeof userFound === 'undefined' ? null : userFound;
             }
 
             function findUserByCredentials(username, password) {
@@ -37,5 +46,11 @@
                 return null;
             }
 
+            function createUser(user) {
+                user._id = new Date().getTime() + "";
+                user.dateCreated = new Date();
+                users.push(user);
+                return user;
+            }
         });
 })();

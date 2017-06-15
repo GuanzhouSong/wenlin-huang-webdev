@@ -1,8 +1,11 @@
 <div class="container-fluid">
+    <div ng-show="model.error" class="alert alert-danger">{{ model.error }}</div>
     <h1>Register</h1>
-    <input type="text" class="form-control" placeholder="Username"/>
-    <input type="password" class="form-control" placeholder="Password"/>
-    <input type="password" class="form-control" placeholder="Verify password"/>
-    <a class="btn btn-primary btn-block" href="#!/profile">Register</a>
+    <input type="text" class="form-control" placeholder="Username" ng-model="username"/>
+    <input type="password" class="form-control" placeholder="Password" ng-model="password"/>
+    <input type="password" class="form-control" placeholder="Verify password" ng-model="passwordConfirm"/>
+    <a class="btn btn-primary btn-block"
+       ng-click="model.registerUser(username, password, passwordConfirm)">Register
+    </a>
     <a class="btn btn-danger  btn-block" href="#!/login">Cancel</a>
 </div>

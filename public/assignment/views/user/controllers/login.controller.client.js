@@ -15,7 +15,7 @@
         function validateLogin(username, password) {
             var foundUser = userService.findUserByCredentials(username, password);
             if (foundUser !== null) {
-                $location.url("/profile/" + foundUser._id);
+                $location.url("/user/" + foundUser._id);
             } else {
                 model.message = "User information does not exist.";
             }

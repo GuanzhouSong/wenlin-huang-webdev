@@ -9,6 +9,7 @@
 
     function websiteService() {
         this.findAllWebsitesForUser = findAllWebsitesForUser;
+        this.findWebsiteByWebsiteId = findWebsiteByWebsiteId;
 
         var websites = [  // private variable inside the service
             { "_id": "123", "name": "Facebook", "developerId": "456", "description": "Lorem" },
@@ -26,6 +27,12 @@
                 if (websites[w].developerId === userId)
                     res.push(websites[w]);
             return res;
+        }
+
+        function findWebsiteByWebsiteId(websiteId) {
+            return websites.find(function (website) {
+                return website._id === websiteId;
+            });
         }
     }
 })();

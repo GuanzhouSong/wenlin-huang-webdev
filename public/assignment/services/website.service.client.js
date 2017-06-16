@@ -10,6 +10,7 @@
     function websiteService() {
         this.findAllWebsitesForUser = findAllWebsitesForUser;
         this.findWebsiteByWebsiteId = findWebsiteByWebsiteId;
+        this.deleteWebsite = deleteWebsite;
 
         var websites = [  // private variable inside the service
             { "_id": "123", "name": "Facebook", "developerId": "456", "description": "Lorem" },
@@ -33,6 +34,12 @@
             return websites.find(function (website) {
                 return website._id === websiteId;
             });
+        }
+
+        function deleteWebsite(websiteId) {
+            var websiteToDelete = findWebsiteByWebsiteId(websiteId);
+            var index = websites.indexOf(websiteToDelete);
+            websites.splice(index, 1);
         }
     }
 })();

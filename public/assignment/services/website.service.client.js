@@ -10,6 +10,7 @@
     function websiteService() {
         this.findAllWebsitesForUser = findAllWebsitesForUser;
         this.findWebsiteByWebsiteId = findWebsiteByWebsiteId;
+        this.createWebsite = createWebsite;
         this.deleteWebsite = deleteWebsite;
 
         var websites = [  // private variable inside the service
@@ -34,6 +35,11 @@
             return websites.find(function (website) {
                 return website._id === websiteId;
             });
+        }
+
+        function createWebsite(website) {
+            website._id = new Date() + "";
+            websites.push(website);
         }
 
         function deleteWebsite(websiteId) {

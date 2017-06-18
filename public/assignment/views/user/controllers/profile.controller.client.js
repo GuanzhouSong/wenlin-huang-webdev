@@ -15,7 +15,7 @@
 
         function init() {
             model.user = userService.findUserById(userId);
-            model.clonedUser = userService.getClonedUser(userId);
+            model.getUserCopy = userService.getUserCopy(userId);
             model.updateUser = userService.updateUser;
             model.deleteUser = userService.deleteUser;
         }

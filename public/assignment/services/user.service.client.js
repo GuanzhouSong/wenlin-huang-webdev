@@ -20,7 +20,7 @@
             api.findUserByCredentials = findUserByCredentials;
             api.updateUser = updateUser;
             api.deleteUser = deleteUser;
-            api.getClonedUser = getClonedUser;
+            api.getUserCopy = getUserCopy;
 
             return api;
 
@@ -70,7 +70,7 @@
             }
 
             // returns a cloned user object
-            function getClonedUser(userId) {
+            function getUserCopy(userId) {
                 var user = findUserById(userId);
                 return angular.copy(user);
             }

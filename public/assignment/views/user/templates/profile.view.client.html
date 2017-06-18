@@ -3,7 +3,7 @@
         <a class="text-white navbar-brand text-bold" href="#!/profile">
             Profile
         </a>
-        <a class="navbar-link navbar-text pull-right text-white" ng-click="model.updateUser(model.user._id, model.clonedUser)">
+        <a class="navbar-link navbar-text pull-right text-white" ng-click="model.updateUser(model.user._id, model.userCopy)">
             <span class="glyphicon glyphicon-ok"></span>
         </a>
     </div>
@@ -12,13 +12,13 @@
 <div class="container-fluid">
    <form class="cl-form-bottom-padding">
        <label for="username">Username</label>
-       <input type="text" class="form-control" placeholder="Username" id="username" ng-model="model.clonedUser.username" required>
+       <input type="text" class="form-control" placeholder="Username" id="username" ng-model="model.userCopy.username" required>
        <label for="email">Email</label>
        <input type="email" class="form-control" placeholder="alice@emmail.com" id="email" required>
        <label for="fName">First Name</label>
-       <input type="text" class="form-control" placeholder="first name" id="fName" ng-model="model.clonedUser.firstName" required>
+       <input type="text" class="form-control" placeholder="first name" id="fName" ng-model="model.userCopy.firstName" required>
        <label for="lName">Last Name</label>
-       <input type="text" class="form-control" placeholder="last name" id="lName" ng-model="model.clonedUser.lastName" required>
+       <input type="text" class="form-control" placeholder="last name" id="lName" ng-model="model.userCopy.lastName" required>
    </form>
 
     <a href="#!/user/{{model.user._id}}/website" class="btn btn-primary btn-block">Websites</a>

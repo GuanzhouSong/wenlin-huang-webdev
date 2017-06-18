@@ -8,10 +8,12 @@
         .service("websiteService", websiteService);
 
     function websiteService() {
-        this.findAllWebsitesForUser = findAllWebsitesForUser;
-        this.findWebsiteByWebsiteId = findWebsiteByWebsiteId;
         this.createWebsite = createWebsite;
+        this.findAllWebsitesByUser = findAllWebsitesByUser;
+        this.findWebsiteByWebsiteId = findWebsiteByWebsiteId;
+        this.updateWebsite = updateWebsite;
         this.deleteWebsite = deleteWebsite;
+        this.getWebsiteCopy = getWebsiteCopy;
 
         var websites = [  // private variable inside the service
             { "_id": "123", "name": "Facebook", "developerId": "456", "description": "Lorem" },
@@ -23,7 +25,13 @@
             { "_id": "789", "name": "Chess", "developerId": "234", "description": "Lorem" }
         ];
 
-        function findAllWebsitesForUser(userId) {
+        function createWebsite(website, userId) {
+            website.developerId = userId;
+            website._id = new Date() + "";
+            websites.push(website);
+        }
+
+        function findAllWebsitesByUser(userId) {
             var res = [];
             for (var w in websites)
                 if (websites[w].developerId === userId)
@@ -37,15 +45,21 @@
             });
         }
 
-        function createWebsite(website) {
-            website._id = new Date() + "";
-            websites.push(website);
-        }
-
         function deleteWebsite(websiteId) {
             var websiteToDelete = findWebsiteByWebsiteId(websiteId);
             var index = websites.indexOf(websiteToDelete);
             websites.splice(index, 1);
+        }
+
+        function updateWebsite(userId, updatedWebsite) {
+            var website = findWebsiteByWebsiteId(userId);
+            var index = websites.indexOf(website);
+            websites[index] = updatedWebsite;
+        }
+
+        function getWebsiteCopy(userId) {
+            var website = findWebsiteByWebsiteId(userId);
+            return angular.copy(website);
         }
     }
 })();

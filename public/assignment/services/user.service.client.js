@@ -5,7 +5,7 @@
 (function () {
     angular
         .module("webAppMaker")
-        .factory("userService", function () {
+        .factory("userService", function ($location) {
             var api = {};
             var users = [
                 {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder" },
@@ -14,19 +14,21 @@
                 {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi" }
             ];
 
+            api.createUser = createUser;
             api.findUserById = findUserById;
             api.findUserByUserName = findUserByUserName;
             api.findUserByCredentials = findUserByCredentials;
-            api.createUser = createUser;
+            api.updateUser = updateUser;
+            api.deleteUser = deleteUser;
+            api.getClonedUser = getClonedUser;
 
             return api;
 
-            function findUserById(userId) {
-                for (var u in users) {
-                    if (users[u]._id === userId)
-                        return users[u];
-                }
-                return null;
+            function createUser(user) {
+                user._id = new Date().getTime() + "";
+                user.dateCreated = new Date();
+                users.push(user);
+                return user;
             }
 
             function findUserByUserName(username) {
@@ -46,11 +48,32 @@
                 return null;
             }
 
-            function createUser(user) {
-                user._id = new Date().getTime() + "";
-                user.dateCreated = new Date();
-                users.push(user);
-                return user;
+            function updateUser(userId, updatedUser) {
+                var user = findUserById(userId);
+                var index = users.indexOf(user);
+                users[index] = updatedUser;
             }
+
+            function findUserById(userId) {
+                for (var u in users) {
+                    if (users[u]._id === userId)
+                        return users[u];
+                }
+                return null;
+            }
+
+            function deleteUser(userId) {
+                var userToDelete = findUserById(userId);
+                var index = users.indexOf(userToDelete);
+                users.splice(index, 1);
+                $location.url('/login');
+            }
+
+            // returns a cloned user object
+            function getClonedUser(userId) {
+                var user = findUserById(userId);
+                return angular.copy(user);
+            }
+
         });
 })();

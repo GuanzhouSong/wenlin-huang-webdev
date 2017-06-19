@@ -1,8 +1,8 @@
 <nav class="navbar navbar-fixed-top navbar-blue">
     <div class="container-fluid">
-        <a class="text-white navbar-brand text-bold" href="#!/profile">
+        <div class="text-white navbar-brand text-bold">
             Profile
-        </a>
+        </div>
         <a class="navbar-link navbar-text pull-right text-white" ng-click="model.updateUser(model.user._id, model.userCopy)">
             <span class="glyphicon glyphicon-ok"></span>
         </a>
@@ -21,14 +21,14 @@
        <input type="text" class="form-control" placeholder="last name" id="lName" ng-model="model.userCopy.lastName" required>
    </form>
 
-    <a href="#!/user/{{model.user._id}}/website" class="btn btn-primary btn-block">Websites</a>
+    <a href="#!/user/{{model.userId}}/website" class="btn btn-primary btn-block">Websites</a>
     <a href="#!/login" class="btn btn-danger btn-block">Logout</a>
     <a class="btn btn-danger btn-block" ng-click="model.deleteUser(model.user._id)">Destroy Account</a>
 </div>
 
 <nav class="navbar navbar-fixed-bottom navbar-blue">
     <div class="container-fluid">
-        <a href="#!/profile"
+        <a href="#!/user/{{model.userId}}"
            class="navbar-link navbar-text pull-right text-white glyphicon glyphicon-user">
         </a>
     </div>

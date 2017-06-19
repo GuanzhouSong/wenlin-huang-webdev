@@ -1,12 +1,14 @@
 <nav class="navbar navbar-fixed-top navbar-gray">
     <div class="container-fluid">
-        <a class="text-white navbar-brand" href="../../page/templates/page-list.view.client.html">
+        <a class="text-white navbar-brand"
+           href="#!user/{{model.userId}}/website/{{model.websiteId}}/page">
             <span class="glyphicon glyphicon-chevron-left text-dark-gray"></span>
         </a>
-        <a class="text-white navbar-brand text-dark-gray text-bold" href="widget-list.view.client.html">
+        <div class="text-white navbar-brand text-dark-gray text-bold">
             Widgets
-        </a>
-        <a href="../widget-chooser.html" class="navbar-link navbar-text pull-right text-dark-gray">
+        </div>
+        <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/chooser"
+           class="navbar-link navbar-text pull-right text-dark-gray">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
     </div>
@@ -15,19 +17,20 @@
 <div class="container-fluid">
     <div class="widget" ng-repeat="widget in model.widgets">
         <div class="widget-toolbar">
-            <a href="../widget-heading.html" class="glyphicon glyphicon-cog text-blue"></a>
+            <a href="#!user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}"
+               class="glyphicon glyphicon-cog text-blue"></a>
             <span class="glyphicon glyphicon-th-list"></span>
         </div>
         <div ng-switch="widget.widgetType">
             <div ng-switch-when="HEADING">
-                <div ng-include="'views/widget/templates/widget-heading.view.client.html'"></div>
+                <div ng-include="'views/widget/templates/lists/widget-heading.view.client.html'"></div>
             </div>
             <div ng-switch-when="IMAGE">
-                <div ng-include="'views/widget/templates/widget-image.view.client.html'"></div>
+                <div ng-include="'views/widget/templates/lists/widget-image.view.client.html'"></div>
             </div>
             <div ng-switch-when="HTML" ng-bind-html="model.trust(widget.text)"></div>
             <div ng-switch-when="YOUTUBE">
-                <div ng-include="'views/widget/templates/widget-youtube.view.client.html'"></div>
+                <div ng-include="'views/widget/templates/lists/widget-youtube.view.client.html'"></div>
             </div>
         </div>
     </div>
@@ -41,7 +44,7 @@
         <a href="#" class="navbar-link navbar-text pull-left text-black icon-padding">
             <span class="glyphicon glyphicon-eye-open"></span>
         </a>
-        <a href="../../user/templates/profile.view.client.html"
+        <a href="#!/user/{{model.userId}}"
            class="navbar-link navbar-text pull-right text-blue glyphicon glyphicon-user">
         </a>
     </div>

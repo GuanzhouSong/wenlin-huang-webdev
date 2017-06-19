@@ -9,13 +9,13 @@
 
     function profileController($routeParams, userService) {
         var model = this;
-        var userId = $routeParams['userId'];
+        model.userId = $routeParams['userId'];
 
         init();
 
         function init() {
-            model.user = userService.findUserById(userId);
-            model.userCopy = userService.getUserCopy(userId);
+            model.user = userService.findUserById(model.userId);
+            model.userCopy = userService.getUserCopy(model.userId);
             model.updateUser = userService.updateUser;
             model.deleteUser = userService.deleteUser;
         }

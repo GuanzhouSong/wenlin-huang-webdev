@@ -3,9 +3,9 @@
         <a class="text-white navbar-brand" href="#!user/{{model.userId}}">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
-        <span class="text-white navbar-brand text-bold">
+        <div class="text-white navbar-brand text-bold">
             Websites
-        </span>
+        </div>
         <a href="#!/user/{{model.userId}}/website/new" class="navbar-link navbar-text pull-right text-white">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
@@ -15,7 +15,7 @@
 <div class="container-fluid">
     <ul class="list-group">
         <li class="list-group-item" ng-repeat="website in model.websites">
-            <a href="../../page/templates/page-list.view.client.html">{{ website.name }}</a>
+            <a href="#!user/{{model.userId}}/website/{{website._id}}/page">{{ website.name }}</a>
             <a href="#!user/{{model.userId}}/website/{{website._id}}" class="glyphicon glyphicon-cog pull-right"></a>
         </li>
     </ul>

@@ -13,6 +13,12 @@
         model.userId = $routeParams["userId"];
         model.createWebsite = createWebsite;
 
+        init();
+
+        function init() {
+            model.websites = websiteService.findAllWebsitesByUser(model.userId);
+        }
+
         function createWebsite(website, userId) {
             websiteService.createWebsite(website, userId);
             $location.url('/user/' + model.userId + '/website');

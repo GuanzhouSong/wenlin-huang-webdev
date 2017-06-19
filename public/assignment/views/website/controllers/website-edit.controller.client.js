@@ -19,6 +19,7 @@
 
         function init() {
             model.websiteCopy = websiteService.getWebsiteCopy(model.websiteId);
+            model.websites = websiteService.findAllWebsitesByUser(model.userId);
         }
 
         function updateWebsite(websiteId, updatedWebsite) {

@@ -1,0 +1,17 @@
+<nav class="navbar navbar-fixed-top navbar-gray">
+    <div class="container-fluid">
+        <a class="text-white navbar-brand"
+           href="#!user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+            <span class="glyphicon glyphicon-chevron-left text-dark-gray"></span>
+        </a>
+        <div class="text-white navbar-brand text-dark-gray text-bold">
+            {{model.wgtId == null ? 'Create' : 'Edit'}} Widget
+        </div>
+
+        <a ng-click="model.wgtId == null ? model.createWidget(model.pageId, model.widget)
+                                         : model.updateWidget(model.wgtId, model.widget)"
+           class="navbar-link navbar-text pull-right text-dark-gray">
+            <span class="glyphicon glyphicon-ok"></span>
+        </a>
+    </div>
+</nav>

@@ -2,21 +2,21 @@
     <nav class="navbar navbar-fixed-top navbar-blue">
 
         <div class="container-fluid col-sm-5 hidden-xs">
-            <a class="text-white navbar-brand" href="website-list.view.client.html">
-                <span class="glyphicon glyphicon-chevron-left"></span>
+            <a class="text-white navbar-brand glyphicon glyphicon-chevron-left"
+               href="#!user/{{model.userId}}/website">
             </a>
-            <a class="text-white navbar-brand text-bold" href="website-list.view.client.html">
+            <div class="text-white navbar-brand text-bold">
                 Websites
-            </a>
-            <a href="website-new.view.client.html" class="navbar-link navbar-text pull-right text-white">
+            </div>
+            <a href="#!user/{{model.userId}}/website/new" class="navbar-link navbar-text pull-right text-white">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
         </div>
 
         <div class="container-fluid col-sm-7">
-            <a class="text-white navbar-brand text-bold" href="website-new.view.client.html">
+            <div class="text-white navbar-brand text-bold">
                 New Website
-            </a>
+            </div>
             <a class="navbar-link navbar-text pull-right text-white" ng-click="model.createWebsite(website, model.userId)">
                 <span class="glyphicon glyphicon-ok"></span>
             </a>
@@ -31,21 +31,9 @@
     <div class="row">
         <div class="col-sm-5 hidden-xs"> <!-- col hidden in xs, 5:7 in sm & above -->
             <ul class="list-group">
-                <li class="list-group-item">
-                    <span class="glyphicon glyphicon-cog pull-right"></span>
-                    Address Book App
-                </li>
-                <li class="list-group-item">
-                    <span class="glyphicon glyphicon-cog pull-right"></span>
-                    Blogger
-                </li>
-                <li class="list-group-item">
-                    <span class="glyphicon glyphicon-cog pull-right"></span>
-                    Blogging App
-                </li>
-                <li class="list-group-item">
-                    <span class="glyphicon glyphicon-cog pull-right"></span>
-                    Script Testing App
+                <li class="list-group-item" ng-repeat="website in model.websites">
+                    <a href="#!user/{{model.userId}}/website/{{website._id}}" class="glyphicon glyphicon-cog pull-right"></a>
+                    {{website.name}}
                 </li>
             </ul>
         </div>
@@ -66,7 +54,7 @@
 
 <nav class="navbar navbar-fixed-bottom navbar-blue">
     <div class="container-fluid">
-        <a href="../../user/templates/profile.view.client.html"
+        <a href="#!/user/{{model.userId}}"
            class="navbar-link navbar-text pull-right text-white glyphicon glyphicon-user">
         </a>
     </div>

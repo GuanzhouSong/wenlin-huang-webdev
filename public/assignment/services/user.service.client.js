@@ -34,7 +34,7 @@
             function findUserByUserName(username) {
                 var userFound = users.find(function (user) {
                     return user.username === username;
-                })
+                });
                 return typeof userFound === 'undefined' ? null : userFound;
             }
 

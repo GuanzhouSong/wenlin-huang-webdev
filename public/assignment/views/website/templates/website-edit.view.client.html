@@ -52,6 +52,7 @@
             <input type="text" class="form-control" id="name" placeholder="Name" ng-model="model.websiteCopy.name">
             <label for="description">Website Description</label>
             <textarea id="description" class="form-control" cols="30" rows="10" placeholder="Description" ng-model="model.websiteCopy.description"></textarea>
+            <a class="btn btn-success btn-block" href="#!user/{{model.userId}}/website/{{model.websiteId}}/page">View Pages</a>
             <a class="btn btn-danger btn-block" ng-click="model.deleteWebsite(model.websiteId)">Delete</a>
         </div>
 

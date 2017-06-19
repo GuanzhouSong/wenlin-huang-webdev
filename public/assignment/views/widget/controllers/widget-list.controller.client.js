@@ -36,11 +36,5 @@
             embedUrl += linkUrlParts[linkUrlParts.length-1];
             return $sce.trustAsResourceUrl(embedUrl);
         }
-
-        // function init() {
-        //     model.widgets = widgetService.findAllWebsitesByUser(model.userId);
-        // }
-        // init();
-
     }
 })();

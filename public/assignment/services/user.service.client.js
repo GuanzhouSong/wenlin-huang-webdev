@@ -5,14 +5,8 @@
 (function () {
     angular
         .module("webAppMaker")
-        .factory("userService", function ($location) {
+        .factory("userService", function ($location, $http) {
             var api = {};
-            var users = [
-                {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder" },
-                {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley" },
-                {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia" },
-                {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi" }
-            ];
 
             api.createUser = createUser;
             api.findUserById = findUserById;
@@ -55,11 +49,10 @@
             }
 
             function findUserById(userId) {
-                for (var u in users) {
-                    if (users[u]._id === userId)
-                        return users[u];
-                }
-                return null;
+                var url = '/api/assignment/user/' + userId;
+                return $http.get(url).then(function (response) {  // returns a promise object to controller
+                    return response.data;  // the user object (success) or error
+                })
             }
 
             function deleteUser(userId) {

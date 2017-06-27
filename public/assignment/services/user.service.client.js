@@ -33,13 +33,10 @@
             }
 
             function findUserByCredentials(username, password) {
-                for (var u in users) {
-                    var user = users[u];
-                    if (user.username === username && user.password === password) {
-                        return user;
-                    }
-                }
-                return null;
+                var url = '/api/assignment/user?username=' + username +'&password=' + password;
+                return $http.get(url).then(function (response) {
+                    return response.data;
+                });
             }
 
             function updateUser(userId, updatedUser) {

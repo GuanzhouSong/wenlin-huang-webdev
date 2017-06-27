@@ -13,12 +13,12 @@
         model.validateLogin = validateLogin;
 
         function validateLogin(username, password) {
-            var foundUser = userService.findUserByCredentials(username, password);
-            if (foundUser !== null) {
-                $location.url("/user/" + foundUser._id);
-            } else {
-                model.message = "User information does not exist.";
-            }
+            userService.findUserByCredentials(username, password)
+                .then(function (user) {
+                    $location.url("/user/" + user._id);
+                }, function (error) {
+                    model.message = "User information does not exist.";
+                });
         }
     }
 })();

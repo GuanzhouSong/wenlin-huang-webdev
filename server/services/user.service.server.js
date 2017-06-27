@@ -15,7 +15,20 @@ app.get('/api/assignment/user', findAllUsers);
 app.get('/api/assignment/user/:userId', findUserById);
 
 function findAllUsers(req, res) {
-    res.send(users);
+    var username = req.query['username']
+    var password = req.query['password'];
+    if (username && password) {  // finding a particular user based on username & password passed using queryString
+        for (var u in users) {
+            var user = users[u];
+            if (user.username === username && user.password === password) {
+                res.json(user);
+                return;
+            }
+        }
+        res.sendStatus(404);
+    } else {
+        res.json(users);
+    }
 }
 
 function findUserById(req, res) {

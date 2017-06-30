@@ -7,6 +7,7 @@
         .module("webAppMaker")
         .factory("userService", function ($location, $http) {
             var api = {};
+            var users = [];
 
             api.createUser = createUser;
             api.findUserById = findUserById;
@@ -25,11 +26,18 @@
                 return user;
             }
 
-            function findUserByUserName(username) {
-                var userFound = users.find(function (user) {
-                    return user.username === username;
+            function findUserById(userId) {
+                var url = '/api/assignment/user/' + userId;
+                return $http.get(url).then(function (response) {  // returns a promise object to controller
+                    return response.data;  // the user object (success) or error
                 });
-                return typeof userFound === 'undefined' ? null : userFound;
+            }
+
+            function findUserByUserName(username) {
+                var url = '/api/assignment/user?username=' + username;
+                return $http.get(url).then(function (response) {
+                    return response.data;
+                });
             }
 
             function findUserByCredentials(username, password) {
@@ -43,13 +51,6 @@
                 var user = findUserById(userId);
                 var index = users.indexOf(user);
                 users[index] = updatedUser;
-            }
-
-            function findUserById(userId) {
-                var url = '/api/assignment/user/' + userId;
-                return $http.get(url).then(function (response) {  // returns a promise object to controller
-                    return response.data;  // the user object (success) or error
-                })
             }
 
             function deleteUser(userId) {

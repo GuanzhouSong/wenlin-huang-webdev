@@ -26,6 +26,17 @@ function findAllUsers(req, res) {
             }
         }
         res.sendStatus(404);
+    } else if (username) {
+        for (var u in users) {
+            var user = users[u];
+            if (user.username === username) {
+                res.json(user);
+                console.log('found '+ username)
+                return;
+            }
+        }
+        res.sendStatus(404);
+        console.log('not found')
     } else {
         res.json(users);
     }

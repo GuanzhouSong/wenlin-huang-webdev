@@ -23,19 +23,17 @@
                 return;
             }
 
-            var user = userService.findUserByUserName(username);
-
-            if (user !== null) {
-                model.error = 'Sorry, the username is already taken.'
-            } else {
-                var newUser = {
-                    username: username,
-                    password: password
-                };
-                newUser = userService.createUser(newUser);
-                $location.url('/user/' + newUser._id);
-            }
+            userService.findUserByUserName(username)
+                .then(function () {
+                    model.error = 'Sorry, the username is already taken.'  // 若成功返回对应 user 说明 username 重复
+                }, function () {                                           // 否则创建新用户
+                    var newUser = {
+                        username: username,
+                        password: password
+                    };
+                    newUser = userService.createUser(newUser);
+                    $location.url('/user/' + newUser._id);
+                });
         }
     }
-
 })();

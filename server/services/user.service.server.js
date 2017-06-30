@@ -11,8 +11,9 @@ var users = [
     {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi" }
 ];
 
-app.get('/api/assignment/user', findAllUsers);
-app.get('/api/assignment/user/:userId', findUserById);
+app.get ('/api/assignment/user', findAllUsers);
+app.post('/api/assignment/user', createUser);
+app.get ('/api/assignment/user/:userId', findUserById);
 
 function findAllUsers(req, res) {
     var username = req.query['username']
@@ -31,12 +32,10 @@ function findAllUsers(req, res) {
             var user = users[u];
             if (user.username === username) {
                 res.json(user);
-                console.log('found '+ username)
                 return;
             }
         }
         res.sendStatus(404);
-        console.log('not found')
     } else {
         res.json(users);
     }
@@ -48,4 +47,11 @@ function findUserById(req, res) {
         return userId == user._id;
     });
     user != null ? res.send(user) : res.sendStatus(404);
+}
+
+function createUser(req, res) {
+    var user = req.body;
+    users.push(user);
+    user._id = new Date().getTime() + "";
+    res.json(user);
 }

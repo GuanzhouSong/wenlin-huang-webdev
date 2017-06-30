@@ -20,10 +20,11 @@
             return api;
 
             function createUser(user) {
-                user._id = new Date().getTime() + "";
-                user.dateCreated = new Date();
-                users.push(user);
-                return user;
+                var url = '/api/assignment/user';
+                return $http.post(url, user)
+                    .then(function (response) {
+                        return response.data;
+                    });
             }
 
             function findUserById(userId) {

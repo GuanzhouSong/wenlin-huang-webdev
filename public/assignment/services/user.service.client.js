@@ -7,7 +7,7 @@
         .module("webAppMaker")
         .factory("userService", function ($location, $http) {
             var api = {};
-            var users = [];
+            var users = [];  // TODO: remove this later
 
             api.createUser = createUser;
             api.findUserById = findUserById;
@@ -49,9 +49,11 @@
             }
 
             function updateUser(userId, updatedUser) {
-                var user = findUserById(userId);
-                var index = users.indexOf(user);
-                users[index] = updatedUser;
+                var url = '/api/assignment/user/' + userId;
+                return $http.put(url, updatedUser)
+                    .then(function (response) {
+                        return response.data;
+                    });
             }
 
             function deleteUser(userId) {

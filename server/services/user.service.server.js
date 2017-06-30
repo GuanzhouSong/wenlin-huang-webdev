@@ -13,6 +13,7 @@ var users = [
 
 app.get ('/api/assignment/user', findAllUsers);
 app.post('/api/assignment/user', createUser);
+app.put ('/api/assignment/user/:userId', updateUser);
 app.get ('/api/assignment/user/:userId', findUserById);
 
 function findAllUsers(req, res) {
@@ -54,4 +55,16 @@ function createUser(req, res) {
     users.push(user);
     user._id = new Date().getTime() + "";
     res.json(user);
+}
+
+function updateUser(req, res) {
+    var newUser = req.body;
+    for (var i in users) {
+        if (users[i]._id === req.params['userId']) {
+            users[i] = newUser;
+            res.sendStatus(200);
+            return;
+        }
+    }
+    res.sendStatus(404);
 }

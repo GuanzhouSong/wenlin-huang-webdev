@@ -31,11 +31,10 @@
                         username: username,
                         password: password
                     };
-                    userService
-                        .createUser(newUser)
-                        .then(function (user) {
-                            $location.url('/user/' + user._id);
-                        });
+                    return userService.createUser(newUser);  // returns a promise
+                })
+                .then(function (user) {
+                    $location.url('/user/' + user._id);
                 });
         }
     }

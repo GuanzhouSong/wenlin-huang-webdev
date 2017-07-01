@@ -7,7 +7,6 @@
         .module("webAppMaker")
         .factory("userService", function ($location, $http) {
             var api = {};
-            var users = [];  // TODO: remove this later
 
             api.createUser = createUser;
             api.findUserById = findUserById;
@@ -63,12 +62,5 @@
                         return response.data;
                     });
             }
-
-            // returns a cloned user object
-            function getUserCopy(userId) {
-                var user = findUserById(userId);
-                return angular.copy(user);
-            }
-
         });
 })();

@@ -7,23 +7,12 @@
         .module("webAppMaker")
         .service("websiteService", websiteService);
 
-    function websiteService() {
+    function websiteService($http) {
         this.createWebsite = createWebsite;
         this.findAllWebsitesByUser = findAllWebsitesByUser;
         this.findWebsiteByWebsiteId = findWebsiteByWebsiteId;
         this.updateWebsite = updateWebsite;
         this.deleteWebsite = deleteWebsite;
-        this.getWebsiteCopy = getWebsiteCopy;
-
-        var websites = [  // private variable inside the service
-            { "_id": "123", "name": "Facebook", "developerId": "456", "description": "Lorem" },
-            { "_id": "234", "name": "Tweeter", "developerId": "456", "description": "Lorem" },
-            { "_id": "456", "name": "Gizmodo", "developerId": "456", "description": "Lorem" },
-            { "_id": "890", "name": "Go", "developerId": "123", "description": "Lorem" },
-            { "_id": "567", "name": "Tic Tac Toe", "developerId": "123", "description": "Lorem" },
-            { "_id": "678", "name": "Checkers", "developerId": "123", "description": "Lorem" },
-            { "_id": "789", "name": "Chess", "developerId": "234", "description": "Lorem" }
-        ];
 
         function createWebsite(website, userId) {
             website.developerId = userId;
@@ -32,11 +21,11 @@
         }
 
         function findAllWebsitesByUser(userId) {
-            var res = [];
-            for (var w in websites)
-                if (websites[w].developerId === userId)
-                    res.push(websites[w]);
-            return res;
+            var url = '/api/assignment/user/' + userId + '/website';
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function findWebsiteByWebsiteId(websiteId) {
@@ -55,11 +44,6 @@
             var website = findWebsiteByWebsiteId(userId);
             var index = websites.indexOf(website);
             websites[index] = updatedWebsite;
-        }
-
-        function getWebsiteCopy(userId) {
-            var website = findWebsiteByWebsiteId(userId);
-            return angular.copy(website);
         }
     }
 })();

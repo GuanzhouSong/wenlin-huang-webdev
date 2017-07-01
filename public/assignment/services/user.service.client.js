@@ -57,10 +57,11 @@
             }
 
             function deleteUser(userId) {
-                var userToDelete = findUserById(userId);
-                var index = users.indexOf(userToDelete);
-                users.splice(index, 1);
-                $location.url('/login');
+                var url = '/api/assignment/user/' + userId;
+                return $http.delete(url)
+                    .then(function (response) {
+                        return response.data;
+                    });
             }
 
             // returns a cloned user object

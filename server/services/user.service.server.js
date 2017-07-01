@@ -11,10 +11,11 @@ var users = [
     {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi" }
 ];
 
-app.get ('/api/assignment/user', findAllUsers);
-app.post('/api/assignment/user', createUser);
-app.put ('/api/assignment/user/:userId', updateUser);
-app.get ('/api/assignment/user/:userId', findUserById);
+app.get   ('/api/assignment/user', findAllUsers);
+app.get   ('/api/assignment/user/:userId', findUserById);
+app.post  ('/api/assignment/user', createUser);
+app.put   ('/api/assignment/user/:userId', updateUser);
+app.delete('/api/assignment/user/:userId', deleteUser);
 
 function findAllUsers(req, res) {
     var username = req.query['username']
@@ -67,4 +68,17 @@ function updateUser(req, res) {
         }
     }
     res.sendStatus(404);
+}
+
+function deleteUser(req, res) {
+    var userId = req.params['userId'];
+    var userToDelete = users.find(function (user) {
+        return user._id === userId;
+    });
+    if (userToDelete) {
+        users.splice(users.indexOf(userToDelete), 1);
+        res.sendStatus(200);
+    } else {
+        res.sendStatus(404);
+    }
 }

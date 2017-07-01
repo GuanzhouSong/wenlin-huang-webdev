@@ -7,10 +7,11 @@
         .module("webAppMaker")  // reading the module declared in app.js
         .controller("profileController", profileController);
 
-    function profileController($routeParams, userService) {
+    function profileController($routeParams, $location, userService) {
         var model = this;
         model.userId = $routeParams['userId'];
         model.updateUser = updateUser;
+        model.deleteUser = deleteUser;
 
         init();
 
@@ -21,8 +22,6 @@
                        }, function (error) {
                            model.error = "User not found.";
                        });
-
-            model.deleteUser = userService.deleteUser;
         }
 
         function updateUser(userId, user) {
@@ -35,7 +34,19 @@
                 .updateUser(userId, user)
                 .then(function () {
                     model.message = 'User successfully updated.';
+                    delete model.error;
                 });
+        }
+
+        function deleteUser(userId) {
+            if (!confirm('Are you sure to destroy your account?'))  return;
+            userService
+                .deleteUser(userId)
+                .then(function () {
+                    $location.url('/login');
+                }, function () {
+                    model.error = 'Something went wrong, unable to remove your account.';
+                })
         }
     }
 })();

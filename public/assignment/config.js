@@ -4,7 +4,7 @@
 (function () {
     angular
         .module("webAppMaker")
-        .config(configuration);
+        .config(configuration)
 
     function configuration($routeProvider) {
         $routeProvider
@@ -17,4 +17,4 @@
                 controllerAs: 'model'
             })
     }
-})();
+})()

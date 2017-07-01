@@ -5,14 +5,14 @@
 (function () {
     angular
         .module('webAppMaker')
-        .controller('widgetChooserController', widgetChooserController);
+        .controller('widgetChooserController', widgetChooserController)
 
     function widgetChooserController($routeParams) {
-        var model = this;
+        var model = this
 
-        model.userId = $routeParams["userId"];
-        model.websiteId = $routeParams["websiteId"];
-        model.pageId = $routeParams["pageId"];
-        model.widgetTypes = ['Heading', 'Image', 'HTML', 'YouTube'];
+        model.userId = $routeParams["userId"]
+        model.websiteId = $routeParams["websiteId"]
+        model.pageId = $routeParams["pageId"]
+        model.widgetTypes = ['Heading', 'Image', 'HTML', 'YouTube']
     }
-})();
+})()

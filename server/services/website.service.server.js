@@ -2,7 +2,7 @@
  * Created by Jeremy on 6/30/17.
  */
 
-var app = require('../../express');
+var app = require('../../express')
 
 var websites = [
     { "_id": "123", "name": "Facebook", "developerId": "456", "description": "Lorem" },
@@ -12,15 +12,15 @@ var websites = [
     { "_id": "567", "name": "Tic Tac Toe", "developerId": "123", "description": "Lorem" },
     { "_id": "678", "name": "Checkers", "developerId": "123", "description": "Lorem" },
     { "_id": "789", "name": "Chess", "developerId": "234", "description": "Lorem" }
-];
+]
 
-app.get('/api/assignment/user/:userId/website', findAllWebsitesByUser);
+app.get('/api/assignment/user/:userId/website', findAllWebsitesByUser)
 
 function findAllWebsitesByUser(req, res) {
-    var userId = req.params['userId'];
-    var userWebsites = [];
+    var userId = req.params['userId']
+    var userWebsites = []
     for (var w in websites)
         if (websites[w].developerId === userId)
-            userWebsites.push(websites[w]);
-    res.json(userWebsites);
+            userWebsites.push(websites[w])
+    res.json(userWebsites)
 }

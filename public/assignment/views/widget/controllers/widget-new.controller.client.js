@@ -5,17 +5,17 @@
 (function () {
     angular
         .module('webAppMaker')
-        .controller('widgetNewController', widgetNewController);
+        .controller('widgetNewController', widgetNewController)
 
     function widgetNewController($routeParams, $location, widgetService) {
-        var model = this;
+        var model = this
 
-        model.userId = $routeParams["userId"];
-        model.websiteId = $routeParams["websiteId"];
-        model.pageId = $routeParams["pageId"];
-        model.createWidget = createWidget;
+        model.userId = $routeParams["userId"]
+        model.websiteId = $routeParams["websiteId"]
+        model.pageId = $routeParams["pageId"]
+        model.createWidget = createWidget
 
-        init();
+        init()
 
         function init() {
             model.widget = {
@@ -24,9 +24,9 @@
         }
 
         function createWidget(pageId, widget) {
-            widgetService.createWidget(pageId, widget);
+            widgetService.createWidget(pageId, widget)
             $location.url('/user/' + model.userId + '/website/' + model.websiteId
-                        + '/page/' + model.pageId + '/widget/');
+                        + '/page/' + model.pageId + '/widget/')
         }
     }
-})();
+})()

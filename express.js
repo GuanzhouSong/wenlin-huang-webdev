@@ -2,7 +2,7 @@
  * Created by Jeremy on 6/20/17.
  */
 
-const express = require('express');  // the express lib itself
-const app = express(); // creates an instance of express
-app.express = express; // also (btw) bind the express lib to the express instance
-module.exports = app;  // exports app as a variable for it to be used anywhere by 'require'ing it as a module
+const express = require('express')  // the express lib itself
+const app = express() // creates an instance of express
+app.express = express // also (btw) bind the express lib to the express instance
+module.exports = app  // exports app as a variable for it to be used anywhere by 'require'ing it as a module

@@ -5,22 +5,22 @@
 (function () {
     angular
         .module('webAppMaker')
-        .controller('websiteListController', websiteListController);
+        .controller('websiteListController', websiteListController)
 
     function websiteListController($routeParams, websiteService) {
-        var model = this;
+        var model = this
 
-        model.userId = $routeParams["userId"];
+        model.userId = $routeParams["userId"]
 
-        init();
+        init()
 
         function init() {
             websiteService
                 .findAllWebsitesByUser(model.userId)
                 .then(function (websites) {
-                    model.websites = websites;
+                    model.websites = websites
                 })
         }
 
     }
-})();
+})()

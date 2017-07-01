@@ -3,5 +3,5 @@
  */
 (function () {
     angular
-        .module("webAppMaker", ["ngRoute"]);  // only declare the module in app.js
-})();
+        .module("webAppMaker", ["ngRoute"])  // only declare the module in app.js
+})()

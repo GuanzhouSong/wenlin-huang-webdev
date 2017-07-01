@@ -5,31 +5,31 @@
 (function () {
     angular
         .module('webAppMaker')
-        .controller('websiteEditController', websiteEditController);
+        .controller('websiteEditController', websiteEditController)
 
     function websiteEditController($routeParams, $location, websiteService) {
-        var model = this;
+        var model = this
 
-        model.userId = $routeParams["userId"];
-        model.websiteId = $routeParams["websiteId"];
-        model.updateWebsite = updateWebsite;
-        model.deleteWebsite = deleteWebsite;
+        model.userId = $routeParams["userId"]
+        model.websiteId = $routeParams["websiteId"]
+        model.updateWebsite = updateWebsite
+        model.deleteWebsite = deleteWebsite
 
-        init();
+        init()
 
         function init() {
-            model.websiteCopy = websiteService.getWebsiteCopy(model.websiteId);
-            model.websites = websiteService.findAllWebsitesByUser(model.userId);
+            model.websiteCopy = websiteService.getWebsiteCopy(model.websiteId)
+            model.websites = websiteService.findAllWebsitesByUser(model.userId)
         }
 
         function updateWebsite(websiteId, updatedWebsite) {
-            websiteService.updateWebsite(websiteId, updatedWebsite);
-            $location.url('/user/' + model.userId + '/website');
+            websiteService.updateWebsite(websiteId, updatedWebsite)
+            $location.url('/user/' + model.userId + '/website')
         }
 
         function deleteWebsite(websiteId) {
-            websiteService.deleteWebsite(websiteId);
-            $location.url('/user/' + model.userId + '/website');
+            websiteService.deleteWebsite(websiteId)
+            $location.url('/user/' + model.userId + '/website')
         }
     }
-})();
+})()

@@ -16,7 +16,11 @@
         init()
 
         function init() {
-            model.websites = websiteService.findAllWebsitesByUser(model.userId)
+            websiteService
+                .findAllWebsitesByUser(model.userId)
+                .then(function (websites) {
+                    model.websites = websites
+                })
         }
 
         function createWebsite(website, userId) {

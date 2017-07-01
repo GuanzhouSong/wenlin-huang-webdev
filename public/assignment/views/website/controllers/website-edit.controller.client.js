@@ -18,8 +18,11 @@
         init()
 
         function init() {
-            model.websiteCopy = websiteService.getWebsiteCopy(model.websiteId)
-            model.websites = websiteService.findAllWebsitesByUser(model.userId)
+            websiteService
+                .findAllWebsitesByUser(model.userId)
+                .then(function (websites) {
+                    model.websites = websites
+                })
         }
 
         function updateWebsite(websiteId, updatedWebsite) {

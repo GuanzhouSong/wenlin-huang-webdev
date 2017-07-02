@@ -6,7 +6,7 @@
         <div class="text-white navbar-brand text-dark-gray text-bold">
             Edit Page
         </div>
-        <a ng-click="model.updatePage(model.pageId, model.pageCopy)" class="navbar-link navbar-text pull-right text-dark-gray">
+        <a ng-click="model.updatePage(model.page)" class="navbar-link navbar-text pull-right text-dark-gray">
             <span class="glyphicon glyphicon-ok"></span>
         </a>
     </div>
@@ -16,10 +16,10 @@
     <form class="cl-form-bottom-padding">
         <label for="name">Name</label>
         <input type="text" class="form-control" placeholder="Page Name" id="name"
-               ng-model="model.pageCopy.name" required>
+               ng-model="model.page.name" required>
         <label for="title">Title</label>
         <input type="text" class="form-control" placeholder="Page Title" id="title"
-               ng-model="model.pageCopy.description" required>
+               ng-model="model.page.description" required>
         <a href="#!user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
            class="btn btn-block btn-success">View Widgets</a>
         <a ng-click="model.deletePage(model.pageId)" class="btn btn-block btn-danger">Delete</a>

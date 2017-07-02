@@ -13,23 +13,38 @@
         model.userId = $routeParams["userId"]
         model.websiteId = $routeParams["websiteId"]
         model.pageId = $routeParams["pageId"]
+        model.findPageByPageId = findPageByPageId
         model.updatePage = updatePage
         model.deletePage = deletePage
 
         init()
 
         function init() {
-            model.pageCopy = pageService.getPageCopy(model.pageId)
+            findPageByPageId(model.pageId)
         }
 
-        function updatePage(pageId, updatedPage) {
-            pageService.updatePage(pageId, updatedPage)
-            $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/')
+        function findPageByPageId(pageId) {
+            pageService
+                .findPageByPageId(pageId)
+                .then(function (page) {
+                    model.page = page
+                })
+        }
+
+        function updatePage(updatedPage) {
+            pageService
+                .updatePage(updatedPage)
+                .then(function () {
+                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/')
+                })
         }
 
         function deletePage(pageId) {
-            pageService.deletePage(pageId)
-            $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/')
+            pageService
+                .deletePage(pageId)
+                .then(function () {
+                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/')
+                })
         }
     }
 })()

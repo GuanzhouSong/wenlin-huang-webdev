@@ -13,10 +13,19 @@
         model.userId = $routeParams["userId"]
         model.websiteId = $routeParams["websiteId"]
 
-        function init() {
-            model.pages = pageService.findPagesByWebsiteId(model.websiteId)
-        }
         init()
+
+        function init() {
+            findPagesByWebsiteId(model.websiteId)
+        }
+
+        function findPagesByWebsiteId(websiteId) {
+            pageService
+                .findPagesByWebsiteId(websiteId)
+                .then(function (pages) {
+                    model.pages = pages
+                })
+        }
 
     }
 })()

@@ -16,8 +16,13 @@
         model.createPage = createPage
 
         function createPage(websiteId, page) {
-            pageService.createPage(websiteId, page)
-            $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page')
+            pageService
+                .createPage(websiteId, page)
+                .then(function () {
+                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page')
+                }, function () {
+                    alert('Something went wrong');
+                })
         }
     }
 })()

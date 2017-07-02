@@ -15,8 +15,12 @@
         init()
 
         function init() {
+            findAllWebsitesByUser(model.userId)
+        }
+
+        function findAllWebsitesByUser(userId) {
             websiteService
-                .findAllWebsitesByUser(model.userId)
+                .findAllWebsitesByUser(userId)
                 .then(function (websites) {
                     model.websites = websites
                 })

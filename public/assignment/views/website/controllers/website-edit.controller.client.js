@@ -48,8 +48,11 @@
         }
 
         function deleteWebsite(websiteId) {
-            websiteService.deleteWebsite(websiteId)
-            $location.url('/user/' + model.userId + '/website')
+            websiteService
+                .deleteWebsite(websiteId)
+                .then(function () {
+                    $location.url('/user/' + model.userId + '/website')
+                })
         }
     }
 })()

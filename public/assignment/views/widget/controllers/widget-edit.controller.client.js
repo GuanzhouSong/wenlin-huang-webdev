@@ -13,27 +13,36 @@
         model.userId = $routeParams["userId"]
         model.websiteId = $routeParams["websiteId"]
         model.pageId = $routeParams["pageId"]
-        model.wgtId = $routeParams["wgtId"]
+        model.widgetId = $routeParams["widgetId"]
         model.updateWidget = updateWidget
         model.deleteWidget = deleteWidget
 
         init()
 
         function init() {
-            var widget = widgetService.findWidgetByWidgetId(model.wgtId)
-            model.widget = widgetService.getWidgetCopy(widget)
+            widgetService
+                .findWidgetByWidgetId(model.widgetId)
+                .then(function (widget) {
+                    model.widget = widget
+                })
         }
 
-        function updateWidget(widgetId, updatedWidget) {
-            widgetService.updateWidget(widgetId, updatedWidget)
-            $location.url('/user/' + model.userId + '/website/' + model.websiteId
-                        + '/page/' + model.pageId + '/widget/')
+        function updateWidget(updatedWidget) {
+            widgetService
+                .updateWidget(updatedWidget)
+                .then(function () {
+                    $location.url('/user/' + model.userId + '/website/' + model.websiteId
+                                + '/page/' + model.pageId + '/widget/')
+                })
         }
 
         function deleteWidget(widgetId) {
-            widgetService.deleteWidget(widgetId)
-            $location.url('/user/' + model.userId + '/website/' + model.websiteId
+            widgetService
+                .deleteWidget(widgetId)
+                .then(function () {
+                    $location.url('/user/' + model.userId + '/website/' + model.websiteId
                         + '/page/' + model.pageId + '/widget/')
+                })
         }
     }
 })()

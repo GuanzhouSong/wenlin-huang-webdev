@@ -19,7 +19,7 @@
 
         function init() {
             model.widget = {
-                widgetType: $routeParams["wgtType"].toUpperCase()
+                widgetType: $routeParams["widgetType"].toUpperCase()
             }
         }
 

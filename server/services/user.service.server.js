@@ -53,8 +53,8 @@ function findUserById(req, res) {
 
 function createUser(req, res) {
     var user = req.body
-    users.push(user)
     user._id = new Date().getTime() + ""
+    users.push(user)
     res.json(user)
 }
 

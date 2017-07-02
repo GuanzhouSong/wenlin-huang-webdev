@@ -15,35 +15,38 @@
         this.deleteWebsite = deleteWebsite
 
         function createWebsite(website, userId) {
-            website.developerId = userId
-            website._id = new Date().getTime() + ""
-            websites.push(website)
+            var url = '/api/assignment/user/' + userId + '/website/'
+            return $http.post(url, website).then(function (response) {
+                return response.data
+            })
         }
 
         function findAllWebsitesByUser(userId) {
             var url = '/api/assignment/user/' + userId + '/website'
-            return $http.get(url)
-                .then(function (response) {
-                    return response.data
-                })
+            return $http.get(url).then(function (response) {
+                return response.data
+            })
         }
 
         function findWebsiteByWebsiteId(websiteId) {
-            return websites.find(function (website) {
-                return website._id === websiteId
+            var url = '/api/assignment/website/' + websiteId
+            return $http.get(url).then(function (response) {
+                return response.data
+            })
+        }
+
+        function updateWebsite(updatedWebsite) {
+            var url = '/api/assignment/website/' + updatedWebsite._id
+            return $http.put(url, updatedWebsite).then(function (response) {
+                return response.data
             })
         }
 
         function deleteWebsite(websiteId) {
-            var websiteToDelete = findWebsiteByWebsiteId(websiteId)
-            var index = websites.indexOf(websiteToDelete)
-            websites.splice(index, 1)
-        }
-
-        function updateWebsite(userId, updatedWebsite) {
-            var website = findWebsiteByWebsiteId(userId)
-            var index = websites.indexOf(website)
-            websites[index] = updatedWebsite
+            var url ='/api/assignment/website/' + websiteId
+            return $http.delete(url).then(function (response) {
+                return response.data
+            })
         }
     }
 })()

@@ -24,8 +24,13 @@
         }
 
         function createWebsite(website, userId) {
-            websiteService.createWebsite(website, userId)
-            $location.url('/user/' + model.userId + '/website')
+            websiteService
+                .createWebsite(website, userId)
+                .then(function () {
+                    $location.url('/user/' + model.userId + '/website')
+                }, function () {
+                    alert('Something went wrong');
+                })
         }
     }
 })()

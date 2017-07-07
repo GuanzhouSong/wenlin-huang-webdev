@@ -14,6 +14,11 @@
                 controller: 'widgetChooserController',
                 controllerAs: 'model'
             })
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget', {
+                templateUrl: 'views/widget/templates/widget-list.view.client.html',
+                controller: 'widgetListController',
+                controllerAs: 'model'
+            })
             .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetType/new', {
                 templateUrl: 'views/widget/templates/widget-edit.view.client.html',
                 controller: 'widgetNewController',

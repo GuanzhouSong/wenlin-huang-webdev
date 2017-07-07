@@ -18,6 +18,7 @@ var widgets = [
 
 app.post  ('/api/assignment/page/:pageId/widget', createWidget)
 app.get   ('/api/assignment/page/:pageId/widget', findAllWidgetsForPage)
+app.put   ('/api/assignment/page/:pageId/widget', updateWidgetsOrder)
 app.get   ('/api/assignment/widget/:widgetId', findWidgetByWidgetId)
 app.put   ('/api/assignment/widget/:widgetId', updateWidget)
 app.delete('/api/assignment/widget/:widgetId', deleteWidget)
@@ -28,15 +29,48 @@ function createWidget(req, res) {
     widget.pageId = pageId
     widget._id = new Date().getTime() + ""
     widgets.push(widget)
-    res.sendStatus(200);
+    res.sendStatus(200)
 }
 
 function findAllWidgetsForPage(req, res) {
     var pageId = req.params['pageId']
-    var result = widgets.filter(function(widget) {
-        return pageId === widget.pageId
+    var result = widgets
+        .map(function (widget, index) {
+            widget.index = index
+            return widget
+        })
+        .filter(function (widget) {
+            return widget.pageId === pageId
+        })
+
+    result != null ? res.json(result) : res.sendStatus(404)
+}
+
+function updateWidgetsOrder(req, res) {
+    var pageId = req.params['pageId']
+    var from = req.query.initial
+    var to = req.query.final
+
+    w = widgets.filter(function (widget) {
+        return widget.pageId === pageId
     })
-    result != null ? res.json(widgets) : res.sendStatus(404)
+
+    // get element in all-widgets array
+    var element = widgets[w[from].index]
+
+    // insert element in all-widgets array
+    widgets.splice(w[from].index, 1)
+    widgets.splice(w[to].index, 0, element)
+
+    w = widgets
+        .map(function (widget, index) {
+            widget.index = index
+            return widget
+        })
+        .filter(function (widget) {
+            return widget.pageId === pageId
+        })
+    res.json(w)
 }
 
 function findWidgetByWidgetId(req, res) {

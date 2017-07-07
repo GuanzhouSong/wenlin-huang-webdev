@@ -12,6 +12,7 @@
             api.findAllWidgetsForPage = findAllWidgetsForPage
             api.findWidgetByWidgetId = findWidgetByWidgetId
             api.updateWidget = updateWidget
+            api.reorderWidgets = reorderWidgets
             api.deleteWidget = deleteWidget
 
             return api
@@ -33,6 +34,13 @@
             function updateWidget(updatedWidget) {
                 var url = '/api/assignment/widget/' + updatedWidget._id
                 return $http.put(url, updatedWidget).then(function (response) {
+                    return response.data
+                })
+            }
+
+            function reorderWidgets(pageId, from, to) {
+                var url = '/api/assignment/page/' + pageId + '/widget?initial=' + from + '&final=' + to
+                return $http.put(url).then(function (response) {
                     return response.data
                 })
             }

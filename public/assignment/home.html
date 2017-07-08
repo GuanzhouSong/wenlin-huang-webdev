@@ -2,12 +2,28 @@
     <h1 href="views/user/login.view.client.html">Assignment Releases</h1>
 </div>
 
-<div class="list-group">
-    <ul class="list-group">
-        <li class="list-group-item" ng-repeat="i in [1,2,3,4]">
-            <a href="https://github.com/jeremylinlin/wenlin-huang-webdev/releases/tag/v{{i}}.0">
-                Assignment {{i}}
+<div class="container-fluid">
+    <div class="list-group">
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="i in [1,2,3,4]">
+                <a href="https://github.com/jeremylinlin/wenlin-huang-webdev/releases/tag/v{{i}}.0">
+                    Assignment {{i}}
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6">
+            <a name="search" class="btn btn-block btn-primary" href="#!/login">
+                Login Page
             </a>
-        </li>
-    </ul>
+        </div>
+        <div class="col-xs-6">
+            <a name="search" class="btn btn-block btn-success" href="#!/user/456/website/456/page/321/widget">
+                Widget Page (One of)
+            </a>
+        </div>
+    </div>
+
 </div>

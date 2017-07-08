@@ -2,7 +2,11 @@
  * Created by Jeremy on 6/30/17.
  */
 
-var app = require('../../express')
+const app = require('../../express')
+var multer = require('multer')
+var upload = multer({
+    dest: __dirname + '/../../public/assignment/uploads/images'
+})       // _dirname is the current js file location in the file system
 
 var widgets = [
     { "_id": "123", "name": "Gizmodo", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
@@ -22,6 +26,7 @@ app.put   ('/api/assignment/page/:pageId/widget', updateWidgetsOrder)
 app.get   ('/api/assignment/widget/:widgetId', findWidgetByWidgetId)
 app.put   ('/api/assignment/widget/:widgetId', updateWidget)
 app.delete('/api/assignment/widget/:widgetId', deleteWidget)
+app.post  ('/api/upload', upload.single('image-file'), uploadImage)
 
 function createWidget(req, res) {
     var pageId = req.params['pageId']
@@ -105,4 +110,22 @@ function deleteWidget(req, res) {
     } else {
         res.sendStatus(404)
     }
+}
+
+function uploadImage(req, res) {
+    var userId = req.body.userId
+    var websiteId = req.body.websiteId
+    var pageId = req.body.pageId
+    var widgetId = req.body.widgetId
+
+    var widget = widgets.find(function (w) {
+        return w._id === widgetId
+    })
+
+    var imageFile = req.file
+
+    widget.url = '/assignment/uploads/images/' + imageFile.filename
+
+    var callbackUrl = '/assignment/#!/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget'
+    res.redirect(callbackUrl)  // 上面两个 url 开始处别漏了 /
 }

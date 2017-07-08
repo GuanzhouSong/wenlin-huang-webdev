@@ -1,20 +1,32 @@
 <div class="container-fluid">
-    <form class="cl-form-bottom-padding">
+    <form class="cl-form-bottom-padding" action="/api/upload" method="post" enctype="multipart/form-data">
+
         <label for="name">Name</label>
         <input type="text" class="form-control" placeholder="Name" id="name"
                ng-model="model.widget.name" required>
+
         <label for="text">Text</label>
         <input type="text" class="form-control" placeholder="Text" id="text"
                ng-model="model.widget.text" required>
+
         <label for="url">URL</label>
         <input type="text" class="form-control" placeholder="URL" id="url"
                ng-model="model.widget.url" required>
+
         <label for="width">Width</label>
         <input type="text" class="form-control" placeholder="Width" id="width"
                ng-model="model.widget.width" required>
+
+        <input name="userId" value="{{model.userId}}" style="display: none"/>
+        <input name="websiteId" value="{{model.websiteId}}" style="display: none"/>
+        <input name="pageId" value="{{model.pageId}}" style="display: none"/>
+        <input name="widgetId" value="{{model.widgetId}}" style="display: none"/>
+
         <label for="upload">Upload</label>
-        <input type="file" class="form-control" placeholder="Upload" id="upload" required>
-        <a href="#" class="btn btn-block btn-primary">Upload Image</a>
+        <input name="image-file" type="file" class="form-control" placeholder="Upload" id="upload" required>
+
+        <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
         <a ng-show="model.widgetId" ng-click="model.deleteWidget(model.widgetId)" class="btn btn-block btn-danger">Delete</a>
+
     </form>
 </div>

@@ -29,7 +29,7 @@
                 .then(function () {
                     $location.url('/user/' + model.userId + '/website')
                 }, function () {
-                    alert('Something went wrong');
+                    alert('Something went wrong')
                 })
         }
     }

@@ -21,7 +21,7 @@
                 .then(function () {
                     $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page')
                 }, function () {
-                    alert('Something went wrong');
+                    alert('Something went wrong')
                 })
         }
     }

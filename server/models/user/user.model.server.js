@@ -21,7 +21,7 @@ function createUser(user) {
 }
 
 function findUserById(userId) {
-    return userModel.findUserById(userId)
+    return userModel.findById(userId)
 }
 
 function findAllUsers() {
@@ -42,9 +42,8 @@ function findUserByCredentials(username, password) {
 }
 
 function updateUser(userId, newUser) {
-    delete newUser.username;  // to disallow certain attributes
-    delete newUser.password;  // you don't want to update in newUser
-    userModel.update({ _id: userId }, { $set: newUser })
+    delete newUser.password;  // to disallow certain attributes you don't want to update in newUser
+    return userModel.update({ _id: userId }, { $set: newUser })
 }
 
 function deleteUser(userId) {

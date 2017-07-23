@@ -116,14 +116,16 @@ function uploadImage(req, res) {
     var pageId = req.body.pageId
     var widgetId = req.body.widgetId
 
-    var widget = widgets.find(function (w) {
-        return w._id === widgetId
-    })
-
-    var imageFile = req.file
-
-    widget.url = '/assignment/uploads/images/' + imageFile.filename
-
-    var callbackUrl = '/assignment/#!/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget'
-    res.redirect(callbackUrl)  // 上面两个 url 开始处别漏了 /
+    widgetModel
+        .findWidgetById(widgetId)
+        .then(function (w) {
+            var widget = w
+            var imageFile = req.file
+            widget.url = '/assignment/uploads/images/' + imageFile.filename
+            return widget.save()
+        })
+        .then(function () {
+            var callbackUrl = '/assignment/#!/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget'
+            res.redirect(callbackUrl)  // 上面两个 url 开始处别漏了 '/'
+        })
 }

@@ -13,8 +13,8 @@ userModel.findUserByUsername = findUserByUsername;
 userModel.findUserByCredentials = findUserByCredentials;
 userModel.updateUser = updateUser;
 userModel.deleteUser = deleteUser;
-userModel.addWebsite = addWebsite;
-userModel.deleteWebsite = deleteWebsite;
+userModel.addWebsite = addWebsite;        // adds the website to the website[] in user
+userModel.deleteWebsite = deleteWebsite;  // removes the website to in website[] in user
 
 module.exports = userModel
 

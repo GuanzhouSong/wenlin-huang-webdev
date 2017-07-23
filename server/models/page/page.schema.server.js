@@ -1,26 +1,27 @@
 /**
- * Created by Jeremy on 7/21/17.
+ * Created by Jeremy on 7/22/17.
  */
 
 var mongoose = require('mongoose')
 
-var websiteSchema = mongoose.Schema({
-    _user: {
+var pageSchema = mongoose.Schema({
+    _website: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'userModel'
+        ref: 'websiteModel'
     },
     name: String,
+    title: String,
     description: String,
-    pages: [{
+    widgets: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'pageModel'
+        ref: 'widgetModel'
     }],
     dateCreated: {
         type: Date,
         default: Date.now
-    },
+    }
 }, {
-    collection: 'website'
+    collection: 'page'
 })
 
-module.exports = websiteSchema
+module.exports = pageSchema

@@ -19,7 +19,7 @@ var userSchema = mongoose.Schema({
         default: Date.now
     },
     websites: [{
-        type: mongoose.Schema.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'websiteModel'
     }]
 }, {

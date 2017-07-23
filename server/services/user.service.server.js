@@ -73,5 +73,7 @@ function deleteUser(req, res) {
         .deleteUser(userId)
         .then(function (status) {
             res.send(status)
+        }, function () {
+            res.sendStatus(404)
         })
 }

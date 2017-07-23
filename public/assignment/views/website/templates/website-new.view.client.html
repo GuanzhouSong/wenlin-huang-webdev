@@ -1,19 +1,15 @@
 <div class="row">
     <nav class="navbar navbar-fixed-top navbar-blue">
-
-        <div class="container-fluid col-sm-5 hidden-xs">
+        <div class="container-fluid col-sm-7 hidden-xs">
             <a class="text-white navbar-brand glyphicon glyphicon-chevron-left"
                href="#!user/{{model.userId}}/website">
             </a>
             <div class="text-white navbar-brand text-bold">
                 Websites
             </div>
-            <a href="#!user/{{model.userId}}/website/new" class="navbar-link navbar-text pull-right text-white">
-                <span class="glyphicon glyphicon-plus"></span>
-            </a>
         </div>
 
-        <div class="container-fluid col-sm-7">
+        <div class="container-fluid col-sm-5">
             <div class="text-white navbar-brand text-bold">
                 New Website
             </div>
@@ -29,13 +25,13 @@
 <div class="container-fluid">
 
     <div class="row">
-        <div class="col-sm-5 hidden-xs"> <!-- col hidden in xs, 5:7 in sm & above -->
-            <div ng-include="'views/website/templates/common/website-list-body.view.client.html'"></div>
+        <div class="col-sm-7 hidden-xs"> <!-- col hidden in xs, 5:7 in sm & above -->
+            <div class="container-fluid" ng-include="'views/website/templates/common/website-list-body.view.client.html'"></div>
         </div>
 
         <span class="vertical-divider-right"></span>
 
-        <div class="col-sm-7">
+        <div class="col-sm-5">
             <label for="name">Name</label>
             <input type="text" class="form-control" id="name" placeholder="Name" ng-model="website.name">
             <label for="description">Description</label>

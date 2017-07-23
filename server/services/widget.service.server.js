@@ -57,26 +57,11 @@ function updateWidgetsOrder(req, res) {
     var from = req.query.initial
     var to = req.query.final
 
-    w = widgets.filter(function (widget) {
-        return widget.pageId === pageId
-    })
-
-    // get element in all-widgets array
-    var element = widgets[w[from].index]
-
-    // insert element in all-widgets array
-    widgets.splice(w[from].index, 1)
-    widgets.splice(w[to].index, 0, element)
-
-    w = widgets
-        .map(function (widget, index) {
-            widget.index = index
-            return widget
+    widgetModel
+        .updateWidgetsOrder(pageId, from, to)
+        .then(function (data) {
+            res.json(data)
         })
-        .filter(function (widget) {
-            return widget.pageId === pageId
-        })
-    res.json(w)
 }
 
 function findWidgetByWidgetId(req, res) {

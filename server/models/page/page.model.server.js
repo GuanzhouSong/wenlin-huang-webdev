@@ -10,8 +10,11 @@ pageModel.findAllPagesForWebsite = findAllPagesForWebsite
 pageModel.findPageById = findPageById
 pageModel.updatePage = updatePage
 pageModel.deletePage = deletePage
+
+// helper
 pageModel.addWidget = addWidget
 pageModel.deleteWidget = deleteWidget
+pageModel.findAllWidgetsForPage = findAllWidgetsForPage
 
 module.exports = pageModel
 
@@ -65,5 +68,15 @@ function deleteWidget(pageId, widgetId) {
             var index = page.widgets.indexOf(widgetId)
             page.widgets.splice(index, 1)
             return page.save()
+        })
+}
+
+function findAllWidgetsForPage(pageId) {
+    return pageModel
+        .findPageById(pageId)
+        .populate('widgets')
+        .exec()
+        .then(function (page) {
+            return page.widgets
         })
 }

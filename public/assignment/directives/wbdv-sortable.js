@@ -17,7 +17,7 @@
                         update: function (evt, ui) {
                             to = ui.item.index()
                             var pageUrl = window.location.href
-                            var pageId = /page\/([0-9]+?)\//.exec(pageUrl)[1]
+                            var pageId = /page\/([0-9a-z]+?)\//.exec(pageUrl)[1]
                             widgetService.reorderWidgets(pageId, from, to)
                         }
                     })

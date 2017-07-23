@@ -10,7 +10,6 @@
                         cursor: 'pointer',
                         opacity: 0.6,
                         tolerance: 'pointer',
-                        containment: 'parent',
                         start: function (evt, ui) {
                             from = ui.item.index()
                         },

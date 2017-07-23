@@ -29,7 +29,7 @@
                 <div ng-include="'views/widget/templates/lists/widget-image.view.client.html'"></div>
             </div>
             <div ng-switch-when="HTML" ng-bind-html="model.trust(widget.text)"></div>
-            <div ng-switch-when="YOUTUBE">
+            <div ng-switch-when="YOUTUBE" class="widget-youtube">
                 <div ng-include="'views/widget/templates/lists/widget-youtube.view.client.html'"></div>
             </div>
         </div>

@@ -1,13 +1,9 @@
 body {
-    padding-top: 70px;
-    padding-bottom: 70px;
-}
-input.form-control, textarea.form-control {
-    margin-bottom: 5px;
+    padding: 60px 10px 60px 10px;
 }
 
-.cl-form-bottom-padding{
-    margin-bottom: 2em;
+.form-element-margin input, textarea {
+    margin-bottom: 5px;
 }
 
 a:hover{

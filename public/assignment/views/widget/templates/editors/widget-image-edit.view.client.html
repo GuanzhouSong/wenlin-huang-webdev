@@ -22,9 +22,9 @@
         <input name="pageId" value="{{model.pageId}}" style="display: none"/>
         <input name="widgetId" value="{{model.widgetId}}" style="display: none"/>
 
-        <a name="search" class="btn btn-block btn-info"
+        <a name="search" class="btn btn-block" ng-class="model.widgetId ? 'btn-info' : 'btn-gray text-black disabled'"
            href="#!/widget/{{model.widgetId}}/search?userId={{model.userId}}&websiteId={{model.websiteId}}&pageId={{model.pageId}}">
-            Search
+            Flickr Search
         </a>
 
         <label for="upload">Upload</label>

@@ -22,6 +22,10 @@ a:hover{
     background-color: #F9F9F9;
 }
 
+.btn-gray {
+    background-color: #DCDAD1;
+}
+
 .text-white {
     color: #fff;
 }
@@ -40,6 +44,10 @@ a:hover{
 
 .text-blue {
     color: #337ab7;
+}
+
+.disabled {
+    cursor: not-allowed;
 }
 
 .icon-padding {

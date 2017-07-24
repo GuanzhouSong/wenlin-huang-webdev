@@ -24,9 +24,12 @@
         }
 
         function createWidget(pageId, widget) {
-            widgetService.createWidget(pageId, widget)
-            $location.url('/user/' + model.userId + '/website/' + model.websiteId
+            widgetService
+                .createWidget(pageId, widget)
+                .then(function () {
+                    $location.url('/user/' + model.userId + '/website/' + model.websiteId
                         + '/page/' + model.pageId + '/widget/')
+                })
         }
     }
 })()

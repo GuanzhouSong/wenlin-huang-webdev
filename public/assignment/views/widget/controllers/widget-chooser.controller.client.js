@@ -13,6 +13,6 @@
         model.userId = $routeParams["userId"]
         model.websiteId = $routeParams["websiteId"]
         model.pageId = $routeParams["pageId"]
-        model.widgetTypes = ['Heading', 'Image', 'HTML', 'YouTube']
+        model.widgetTypes = ['Heading', 'Input', 'Image', 'HTML', 'YouTube']
     }
 })()

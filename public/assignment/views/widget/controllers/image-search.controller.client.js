@@ -7,7 +7,7 @@
         .module('webAppMaker')
         .controller('imageSearchController', imageSearchController)
 
-    function imageSearchController($routeParams, flickrService, widgetService) {
+    function imageSearchController($routeParams, flickrService, widgetService, $location) {
         var model = this
 
         model.widgetId = $routeParams["widgetId"]
@@ -22,6 +22,12 @@
                 .then(function (widget) {
                     model.widget = widget
                 })
+
+            var queryStrings = $location.search()
+
+            model.userId = queryStrings.userId
+            model.websiteId = queryStrings.websiteId
+            model.pageId = queryStrings.pageId
         }
 
         function searchPhotos(searchText) {
@@ -29,7 +35,7 @@
                 .searchPhotos(searchText)
                 .then(function (data) {
                     data = data.replace("jsonFlickrApi(","")  // grab the data as the function
-                    data = data.substring(0,data.length - 1)  // argument
+                    data = data.substring(0, data.length-1)   // argument
                     data = JSON.parse(data)
                     model.photos = data.photos
                 })

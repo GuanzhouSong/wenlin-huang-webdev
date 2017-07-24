@@ -18,8 +18,14 @@ var widgetSchema = mongoose.Schema({
     placeholder: String,
     description: String,
     url: String,
-    width: String,
-    height: String,
+    width: {
+        type: Number,
+        default: 100
+    },
+    height: {
+        type: Number,
+        default: 100
+    },
     rows: Number,
     size: Number,
     class: String,

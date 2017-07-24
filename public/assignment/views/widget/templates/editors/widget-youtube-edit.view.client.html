@@ -9,9 +9,12 @@
         <label for="url">URL</label>
         <input type="text" class="form-control" placeholder="URL" id="url"
                ng-model="model.widget.url" required>
-        <label for="width">Width</label>
-        <input type="text" class="form-control" placeholder="Width" id="width"
+        <label for="width">Width in %</label>
+        <input type="number" class="form-control" placeholder="Default: 100" id="width"
                ng-model="model.widget.width" required>
+        <label for="height">Height in %</label>
+        <input type="number" class="form-control" placeholder="Default: 100" id="height"
+               ng-model="model.widget.height" required>
         <a ng-show="model.widgetId" ng-click="model.deleteWidget(model.widgetId)" class="btn btn-block btn-danger">Delete</a>
     </form>
 </div>

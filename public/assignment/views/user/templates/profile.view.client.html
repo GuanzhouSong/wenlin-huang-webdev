@@ -23,14 +23,14 @@
        <input type="text" class="form-control" placeholder="last name" id="lName" ng-model="model.user.lastName" required>
    </form>
 
-    <a href="#!/user/{{model.userId}}/website" class="btn btn-primary btn-block">Websites</a>
+    <a href="#!/website" class="btn btn-primary btn-block">Websites</a>
     <a href="#!/login" class="btn btn-danger btn-block">Logout</a>
     <a class="btn btn-danger btn-block" ng-click="model.deleteUser(model.user._id)">Destroy Account</a>
 </div>
 
 <nav class="navbar navbar-fixed-bottom navbar-blue">
     <div class="container-fluid">
-        <a href="#!/user/{{model.userId}}"
+        <a href="#!/profile"
            class="navbar-link navbar-text pull-right text-white glyphicon glyphicon-user">
         </a>
     </div>

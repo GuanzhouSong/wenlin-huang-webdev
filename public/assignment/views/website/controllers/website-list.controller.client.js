@@ -7,10 +7,10 @@
         .module('webAppMaker')
         .controller('websiteListController', websiteListController)
 
-    function websiteListController($routeParams, websiteService) {
+    function websiteListController(websiteService, currentUser) {
         var model = this
 
-        model.userId = $routeParams["userId"]
+        model.userId = currentUser._id
 
         init()
 

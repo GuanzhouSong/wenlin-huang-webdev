@@ -7,10 +7,10 @@
         .module('webAppMaker')
         .controller('widgetListController', widgetListController)
 
-    function widgetListController($routeParams, $sce, widgetService) {
+    function widgetListController($routeParams, $sce, widgetService, currentUser) {
         var model = this
 
-        model.userId = $routeParams["userId"]
+        model.userId = currentUser._id
         model.websiteId = $routeParams["websiteId"]
         model.pageId = $routeParams["pageId"]
         model.widgetId = $routeParams["widgetId"]

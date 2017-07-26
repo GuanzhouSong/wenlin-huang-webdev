@@ -9,30 +9,49 @@
 
     function configuration($routeProvider) {
         $routeProvider
-            .when('/user/:userId/website/:websiteId/page/:pageId/widget/chooser', {
+            .when('/website/:websiteId/page/:pageId/widget/chooser', {
                 templateUrl: 'views/widget/templates/widget-chooser.view.client.html',
                 controller: 'widgetChooserController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
-            .when('/user/:userId/website/:websiteId/page/:pageId/widget', {
+            .when('/website/:websiteId/page/:pageId/widget', {
                 templateUrl: 'views/widget/templates/widget-list.view.client.html',
                 controller: 'widgetListController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
-            .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetType/new', {
+            .when('/website/:websiteId/page/:pageId/widget/:widgetType/new', {
                 templateUrl: 'views/widget/templates/widget-edit.view.client.html',
                 controller: 'widgetNewController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
-            .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId', {
+            .when('/website/:websiteId/page/:pageId/widget/:widgetId', {
                 templateUrl: 'views/widget/templates/widget-edit.view.client.html',
                 controller: 'widgetEditController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
             .when('/widget/:widgetId/search', {
                 templateUrl: 'views/widget/templates/widget-flickr-search.view.client.html',
                 controller: 'imageSearchController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
+        function checkLoggedIn(userService) {  // 注意在这里要 inject 'userService'
+            return userService.checkLoggedIn()
+        }
+
     }
 })()

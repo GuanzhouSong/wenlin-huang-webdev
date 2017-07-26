@@ -7,10 +7,10 @@
         .module('webAppMaker')
         .controller('websiteNewController', websiteNewController)
 
-    function websiteNewController($routeParams, $location, websiteService) {
+    function websiteNewController($location, websiteService, currentUser) {
         var model = this
 
-        model.userId = $routeParams["userId"]
+        model.userId = currentUser._id
         model.createWebsite = createWebsite
 
         init()
@@ -27,7 +27,7 @@
             websiteService
                 .createWebsite(website, userId)
                 .then(function () {
-                    $location.url('/user/' + model.userId + '/website')
+                    $location.url('/website')
                 }, function () {
                     alert('Something went wrong')
                 })

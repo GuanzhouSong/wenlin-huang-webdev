@@ -7,10 +7,10 @@
         .module('webAppMaker')
         .controller('widgetNewController', widgetNewController)
 
-    function widgetNewController($routeParams, $location, widgetService) {
+    function widgetNewController($routeParams, $location, widgetService, currentUser) {
         var model = this
 
-        model.userId = $routeParams["userId"]
+        model.userId = currentUser._id
         model.websiteId = $routeParams["websiteId"]
         model.pageId = $routeParams["pageId"]
         model.createWidget = createWidget
@@ -27,8 +27,7 @@
             widgetService
                 .createWidget(pageId, widget)
                 .then(function () {
-                    $location.url('/user/' + model.userId + '/website/' + model.websiteId
-                        + '/page/' + model.pageId + '/widget/')
+                    $location.url('/website/' + model.websiteId + '/page/' + model.pageId + '/widget/')
                 })
         }
     }

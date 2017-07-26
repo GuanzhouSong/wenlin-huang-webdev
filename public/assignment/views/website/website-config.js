@@ -9,20 +9,34 @@
 
     function configuration($routeProvider) {
         $routeProvider
-            .when('/user/:userId/website', {
+            .when('/website', {
                 templateUrl: 'views/website/templates/website-list.view.client.html',
                 controller: 'websiteListController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
-            .when('/user/:userId/website/new', {
+            .when('/website/new', {
                 templateUrl: 'views/website/templates/website-new.view.client.html',
                 controller: 'websiteNewController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
-            .when('/user/:userId/website/:websiteId', {
+            .when('/website/:websiteId', {
                 templateUrl: 'views/website/templates/website-edit.view.client.html',
                 controller: 'websiteEditController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
+
+        function checkLoggedIn(userService) {  // 注意在这里要 inject 'userService'
+            return userService.checkLoggedIn()
+        }
+
     }
 })()

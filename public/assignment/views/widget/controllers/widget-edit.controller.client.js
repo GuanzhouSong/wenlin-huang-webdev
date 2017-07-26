@@ -7,10 +7,10 @@
         .module('webAppMaker')
         .controller('widgetEditController', widgetEditController)
 
-    function widgetEditController($routeParams, $location, widgetService) {
+    function widgetEditController($routeParams, $location, widgetService, currentUser) {
         var model = this
 
-        model.userId = $routeParams["userId"]
+        model.userId = currentUser._id
         model.websiteId = $routeParams["websiteId"]
         model.pageId = $routeParams["pageId"]
         model.widgetId = $routeParams["widgetId"]
@@ -31,7 +31,7 @@
             widgetService
                 .updateWidget(updatedWidget)
                 .then(function () {
-                    $location.url('/user/' + model.userId + '/website/' + model.websiteId
+                    $location.url('/website/' + model.websiteId
                                 + '/page/' + model.pageId + '/widget/')
                 })
         }
@@ -40,7 +40,7 @@
             widgetService
                 .deleteWidget(widgetId)
                 .then(function () {
-                    $location.url('/user/' + model.userId + '/website/' + model.websiteId
+                    $location.url('/website/' + model.websiteId
                         + '/page/' + model.pageId + '/widget/')
                 })
         }

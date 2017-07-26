@@ -1,13 +1,13 @@
 <nav class="navbar navbar-fixed-top navbar-gray">
     <div class="container-fluid">
         <a class="text-white navbar-brand"
-           href="#!user/{{model.userId}}/website/{{model.websiteId}}/page">
+           href="#!/website/{{model.websiteId}}/page">
             <span class="glyphicon glyphicon-chevron-left text-dark-gray"></span>
         </a>
         <div class="text-white navbar-brand text-dark-gray text-bold">
             Widgets
         </div>
-        <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/chooser"
+        <a href="#!/website/{{model.websiteId}}/page/{{model.pageId}}/widget/chooser"
            class="navbar-link navbar-text pull-right text-dark-gray">
             <span class="glyphicon glyphicon-plus"></span>
         </a>
@@ -17,7 +17,7 @@
 <div wd-sortable class="container-fluid">
     <div class="widget" ng-repeat="widget in model.widgets">
         <div class="widget-toolbar">
-            <a href="#!user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}"
+            <a href="#!/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}"
                class="glyphicon glyphicon-cog text-blue"></a>
             <span class="glyphicon glyphicon-th-list"></span>
         </div>
@@ -47,7 +47,7 @@
         <a href="#" class="navbar-link navbar-text pull-left text-black icon-padding">
             <span class="glyphicon glyphicon-eye-open"></span>
         </a>
-        <a href="#!/user/{{model.userId}}"
+        <a href="#!/profile"
            class="navbar-link navbar-text pull-right text-blue glyphicon glyphicon-user">
         </a>
     </div>

@@ -98,7 +98,7 @@ function uploadImage(req, res) {
             return widget.save()
         })
         .then(function () {
-            var callbackUrl = '/assignment/#!/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget'
+            var callbackUrl = '/assignment/#!/website/' + websiteId + '/page/' + pageId + '/widget'
             res.redirect(callbackUrl)  // 上面两个 url 开始处别漏了 '/'
         })
 }

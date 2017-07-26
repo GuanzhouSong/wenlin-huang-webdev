@@ -7,10 +7,10 @@
         .module('webAppMaker')
         .controller('widgetChooserController', widgetChooserController)
 
-    function widgetChooserController($routeParams) {
+    function widgetChooserController($routeParams, currentUser) {
         var model = this
 
-        model.userId = $routeParams["userId"]
+        model.userId = currentUser._id
         model.websiteId = $routeParams["websiteId"]
         model.pageId = $routeParams["pageId"]
         model.widgetTypes = ['Heading', 'Input', 'Image', 'HTML', 'YouTube']

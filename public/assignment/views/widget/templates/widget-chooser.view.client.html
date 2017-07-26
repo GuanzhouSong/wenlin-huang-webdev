@@ -1,6 +1,6 @@
 <nav class="navbar navbar-fixed-top navbar-gray">
     <div class="container-fluid">
-        <a class="text-white navbar-brand" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+        <a class="text-white navbar-brand" href="#!/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
             <span class="glyphicon glyphicon-chevron-left text-dark-gray"></span>
         </a>
         <div class="text-white navbar-brand text-dark-gray text-bold">
@@ -12,7 +12,7 @@
 <div class="container-fluid">
     <ul class="list-group">
         <li class="list-group-item" ng-repeat="widgetType in model.widgetTypes" ng-switch="widgetType">
-            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widgetType.toLowerCase()}}/new">
+            <a href="#!/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widgetType.toLowerCase()}}/new">
                 {{widgetType}}
             </a>
         </li>
@@ -21,7 +21,7 @@
 
 <nav class="navbar navbar-fixed-bottom navbar-gray">
     <div class="container-fluid">
-        <a href="#!/user/{{model.userId}}" class="navbar-link navbar-text pull-right">
+        <a href="#!/profile" class="navbar-link navbar-text pull-right">
             <span class="glyphicon glyphicon-user text-blue"></span>
         </a>
     </div>

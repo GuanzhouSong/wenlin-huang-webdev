@@ -6,15 +6,15 @@ var mongoose = require('mongoose')
 var userSchema = require('./user.schema.server')
 var userModel = mongoose.model('userModel', userSchema)
 
-userModel.createUser = createUser;
-userModel.findUserById = findUserById;
-userModel.findAllUsers = findAllUsers;
-userModel.findUserByUsername = findUserByUsername;
-userModel.findUserByCredentials = findUserByCredentials;
-userModel.updateUser = updateUser;
-userModel.deleteUser = deleteUser;
-userModel.addWebsite = addWebsite;        // adds the website to the website[] in user
-userModel.deleteWebsite = deleteWebsite;  // removes the website to in website[] in user
+userModel.createUser = createUser
+userModel.findUserById = findUserById
+userModel.findAllUsers = findAllUsers
+userModel.findUserByUsername = findUserByUsername
+userModel.findUserByCredentials = findUserByCredentials
+userModel.updateUser = updateUser
+userModel.deleteUser = deleteUser
+userModel.addWebsite = addWebsite        // adds the website to the website[] in user
+userModel.deleteWebsite = deleteWebsite  // removes the website to in website[] in user
 
 module.exports = userModel
 
@@ -44,7 +44,7 @@ function findUserByCredentials(username, password) {
 }
 
 function updateUser(userId, newUser) {
-    delete newUser.password;  // to disallow certain attributes you don't want to update in newUser
+    delete newUser.password  // to disallow certain attributes you don't want to update in newUser
     return userModel.update({ _id: userId }, { $set: newUser })
 }
 

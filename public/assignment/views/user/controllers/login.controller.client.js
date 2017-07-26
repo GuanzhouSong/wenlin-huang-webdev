@@ -13,7 +13,7 @@
         model.validateLogin = validateLogin
 
         function validateLogin(username, password) {
-            userService.findUserByCredentials(username, password)
+            userService.login(username, password)
                 .then(function (user) {
                     $location.url("/user/" + user._id)
                 }, function (error) {

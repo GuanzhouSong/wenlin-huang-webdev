@@ -11,7 +11,7 @@
             api.createUser = createUser
             api.findUserById = findUserById
             api.findUserByUserName = findUserByUserName
-            api.findUserByCredentials = findUserByCredentials
+            api.login = login
             api.updateUser = updateUser
             api.deleteUser = deleteUser
 
@@ -39,9 +39,13 @@
                 })
             }
 
-            function findUserByCredentials(username, password) {
-                var url = '/api/assignment/user?username=' + username +'&password=' + password
-                return $http.get(url).then(function (response) {
+            function login(username, password) {
+                var url = '/api/assignment/login'
+                var credentials = {
+                    username: username,
+                    password: password
+                }
+                return $http.post(url, credentials).then(function (response) {
                     return response.data
                 })
             }

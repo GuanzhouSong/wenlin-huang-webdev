@@ -7,21 +7,15 @@
         .module("webAppMaker")  // reading the module declared in app.js
         .controller("profileController", profileController)
 
-    function profileController($routeParams, $location, userService) {
+    function profileController($location, userService, currentUser) {
         var model = this
-        model.userId = $routeParams['userId']
         model.updateUser = updateUser
         model.deleteUser = deleteUser
 
         init()
 
         function init() {
-            userService.findUserById(model.userId)  // findUserById() returns a promise
-                       .then(function (user) {
-                           model.user = user
-                       }, function (error) {
-                           model.error = "User not found."
-                       })
+            model.user = currentUser
         }
 
         function updateUser(userId, user) {

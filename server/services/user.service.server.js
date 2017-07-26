@@ -24,6 +24,7 @@ passport.deserializeUser(function (_id, done) {
 
 // app.get   ('/api/assignment/user', findUserByCredentials)
 app.post   ('/api/assignment/login', passport.authenticate('local'), login)
+app.get    ('/api/assignment/checkLoggedIn', checkLoggedIn)
 
 app.get   ('/api/assignment/user/:userId', findUserById)
 app.post  ('/api/assignment/user', createUser)
@@ -48,6 +49,10 @@ function login(req, res) {
     var user = req.user
     res.json(user)
 }
+
+function checkLoggedIn(req, res) {
+    res.send(req.isAuthenticated() ? req.user : '0')  // isAuthenticated() is a convenient function that checks
+}                                                     // if passport has already authenticated the user in the session
 
 function findUserByCredentials(req, res) {
     var username = req.query['username']

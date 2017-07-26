@@ -14,6 +14,7 @@
             api.login = login
             api.updateUser = updateUser
             api.deleteUser = deleteUser
+            api.checkLoggedIn = checkLoggedIn
 
             return api
 
@@ -64,6 +65,14 @@
                     .then(function (response) {
                         return response.data
                     })
+            }
+
+            function checkLoggedIn() {
+                var url = '/api/assignment/checkLoggedIn'
+                return $http.get(url)
+                    .then(function (response) {  // will response back either
+                        return response.data     // - currentUser
+                    })                           // - a falsy value
             }
         })
 })()

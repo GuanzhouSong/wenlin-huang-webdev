@@ -15,7 +15,7 @@
         function validateLogin(username, password) {
             userService.login(username, password)
                 .then(function (user) {
-                    $location.url("/user/" + user._id)
+                    $location.url("/profile")
                 }, function (error) {
                     model.message = "User information does not exist."
                 })

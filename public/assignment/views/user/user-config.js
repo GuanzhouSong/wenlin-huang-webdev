@@ -19,10 +19,17 @@
                 controller: 'registerController',
                 controllerAs: 'model'
             })
-            .when('/user/:userId', {
+            .when('/profile', {
                 templateUrl: 'views/user/templates/profile.view.client.html',
                 controller: 'profileController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
+
+        function checkLoggedIn(userService) {  // 注意在这里要 inject 'userService'
+            return userService.checkLoggedIn()
+        }
     }
 })()

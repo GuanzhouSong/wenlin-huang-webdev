@@ -10,6 +10,11 @@ a:hover{
     text-decoration: none;
 }
 
+a[ng-click]:hover {
+    cursor: hand;
+    cursor: pointer;
+}
+
 .navbar-blue {
     background-color: #337ab7;
 }

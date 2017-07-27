@@ -66,6 +66,9 @@
                     .then(function (response) {
                         return response.data
                     })
+                    .catch(function (response) {
+                        throw response.data
+                    })
             }
 
             function deleteUser(userId) {

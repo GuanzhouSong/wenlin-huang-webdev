@@ -30,6 +30,9 @@
                 .then(function () {
                     model.message = 'User successfully updated.'
                     delete model.error
+                }, function (err) {
+                    delete model.message
+                    model.error = err.message
                 })
         }
 

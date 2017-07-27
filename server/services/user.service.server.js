@@ -114,6 +114,8 @@ function updateUser(req, res) {
         .updateUser(newUser._id, newUser)
         .then(function (status) {
             res.send(status)
+        }, function (err) {
+            res.status(500).send(err)
         })
 }
 

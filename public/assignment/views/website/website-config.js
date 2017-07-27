@@ -34,9 +34,21 @@
                 }
             })
 
-        function checkLoggedIn(userService) {  // 注意在这里要 inject 'userService'
-            return userService.checkLoggedIn()
-        }
+        function checkLoggedIn(userService, $q, $location) {  // 注意在这里要 inject 'userService'
+            var deferred = $q.defer()
 
+            userService
+                .checkLoggedIn()
+                .then(function (user) {
+                    if (user == '0') {
+                        deferred.reject()
+                        $location.url('/login')
+                    } else {
+                        deferred.resolve(user)
+                    }
+                })
+
+            return deferred.promise
+        }
     }
 })()

@@ -12,6 +12,7 @@
             api.findUserById = findUserById
             api.findUserByUserName = findUserByUserName
             api.login = login
+            api.logout = logout
             api.updateUser = updateUser
             api.deleteUser = deleteUser
             api.checkLoggedIn = checkLoggedIn
@@ -51,6 +52,14 @@
                 })
             }
 
+            function logout() {
+                var url = '/api/assignment/logout'
+                return $http.post(url)
+                    .then(function (response) {
+                        return response.data
+                    })
+            }
+
             function updateUser(userId, updatedUser) {
                 var url = '/api/assignment/user/' + userId
                 return $http.put(url, updatedUser)
@@ -72,7 +81,7 @@
                 return $http.get(url)
                     .then(function (response) {  // will response back either
                         return response.data     // - currentUser
-                    })                           // - a falsy value
+                    })                           // - '0'
             }
         })
 })()

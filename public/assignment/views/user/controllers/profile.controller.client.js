@@ -11,6 +11,7 @@
         var model = this
         model.updateUser = updateUser
         model.deleteUser = deleteUser
+        model.logout = logout
 
         init()
 
@@ -40,6 +41,14 @@
                     $location.url('/login')
                 }, function () {
                     model.error = 'Something went wrong, unable to remove your account.'
+                })
+        }
+
+        function logout() {
+            return userService
+                .logout()
+                .then(function () {
+                    $location.url('/login')
                 })
         }
     }

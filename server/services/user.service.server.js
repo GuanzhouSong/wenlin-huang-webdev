@@ -24,6 +24,7 @@ passport.deserializeUser(function (_id, done) {
 
 // app.get   ('/api/assignment/user', findUserByCredentials)
 app.post   ('/api/assignment/login', passport.authenticate('local'), login)
+app.post   ('/api/assignment/logout', logout)
 app.get    ('/api/assignment/checkLoggedIn', checkLoggedIn)
 
 app.get   ('/api/assignment/user/:userId', findUserById)
@@ -48,6 +49,11 @@ function localStrategy(username, password, done) {
 function login(req, res) {
     var user = req.user
     res.json(user)
+}
+
+function logout(req, res) {
+    req.logout()  // invalidates the current user from the session/cookie
+    res.sendStatus(200)
 }
 
 function checkLoggedIn(req, res) {

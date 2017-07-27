@@ -27,9 +27,22 @@
                     currentUser: checkLoggedIn
                 }
             })
+    }
 
-        function checkLoggedIn(userService) {  // 注意在这里要 inject 'userService'
-            return userService.checkLoggedIn()
-        }
+    function checkLoggedIn(userService, $q, $location) {  // 注意在这里要 inject 'userService'
+        var deferred = $q.defer()                         // TODO: How to avoid duplicate implementations of checkLoggedIn function in four config files? $rootScope?
+
+        userService
+            .checkLoggedIn()
+            .then(function (user) {
+                if (user == '0') {
+                    deferred.reject()
+                    $location.url('/login')
+                } else {
+                    deferred.resolve(user)
+                }
+            })
+
+        return deferred.promise
     }
 })()

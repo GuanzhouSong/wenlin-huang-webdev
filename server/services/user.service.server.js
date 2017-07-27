@@ -22,7 +22,7 @@ passport.deserializeUser(function (_id, done) {
         })
 })
 
-// app.get   ('/api/assignment/user', findUserByCredentials)
+app.get   ('/api/assignment/user', findUserByCredentials)
 app.post   ('/api/assignment/login', passport.authenticate('local'), login)
 app.post   ('/api/assignment/logout', logout)
 app.get    ('/api/assignment/checkLoggedIn', checkLoggedIn)
@@ -74,17 +74,13 @@ function findUserByCredentials(req, res) {
         userModel
             .findUserByUsername(username)
             .then(function (user) {
-                if (user)  res.json(user)
-                else       res.sendStatus(404)
+                if (user) {
+                    res.status(200).send({ error: 'The username is already taken.' })
+                } else {
+                    res.sendStatus(200)
+                }
             })
     }
-    // else {
-    //     userModel
-    //         .findAllUsers()
-    //         .then(function (users) {
-    //             res.json(users)
-    //         })
-    // }
 }
 
 function findUserById(req, res) {
@@ -104,7 +100,9 @@ function createUser(req, res) {
     userModel
         .createUser(user)
         .then(function (user) {
-            res.json(user)
+            req.logIn(user, function (status) {
+                res.send(status)
+            })
         })
 }
 

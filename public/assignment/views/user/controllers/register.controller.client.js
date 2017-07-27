@@ -23,19 +23,23 @@
                 return
             }
 
-            userService.findUserByUserName(username)
+            userService
+                .findUserByUserName(username)
                 .then(function () {
-                    model.error = 'Sorry, the username is already taken.'  // 若成功返回对应 user 说明 username 重复
-                }, function () {                                           // 否则创建新用户
                     var newUser = {
                         username: username,
                         password: password
                     }
-                    return userService.createUser(newUser)  // returns a promise
+                    return userService.registerUser(newUser)
+
                 })
-                .then(function (user) {
-                    $location.url('/user/' + user._id)
+                .then(function () {
+                    $location.url('/profile')
                 })
+                .catch(function (obj) {
+                    model.error = obj.error
+                })
+
         }
     }
 })()

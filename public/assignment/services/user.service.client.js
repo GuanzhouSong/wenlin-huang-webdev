@@ -8,7 +8,7 @@
         .factory("userService", function ($location, $http) {
             var api = {}
 
-            api.createUser = createUser
+            api.registerUser = registerUser
             api.findUserById = findUserById
             api.findUserByUserName = findUserByUserName
             api.login = login
@@ -19,7 +19,7 @@
 
             return api
 
-            function createUser(user) {
+            function registerUser(user) {
                 var url = '/api/assignment/user'
                 return $http.post(url, user)
                     .then(function (response) {
@@ -36,9 +36,13 @@
 
             function findUserByUserName(username) {
                 var url = '/api/assignment/user?username=' + username
-                return $http.get(url).then(function (response) {
-                    return response.data
-                })
+                return $http.get(url)
+                    .then(function (response) {
+                        if (response.data.error) {  // 若返回的数据中包含在 server 添加的 error 信息
+                            throw response.data     // 则作为一个 error throw 给 register controller 让他 catch
+                        }                           // 然后作为 model.error render 在页面上
+                        return response.data
+                    })
             }
 
             function login(username, password) {

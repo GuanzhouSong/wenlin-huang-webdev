@@ -17,7 +17,10 @@
                 }
             })
             .when('/admin', {
-                templateUrl: 'views/admin/admin.view.client.html'
+                templateUrl: 'views/admin/admin.view.client.html',
+                resolve: {
+                    currentUser: checkAdmin
+                }
             })
     }
 
@@ -31,6 +34,23 @@
                     deferred.resolve(null)
                 } else {
                     deferred.resolve(user)
+                }
+            })
+
+        return deferred.promise
+    }
+
+    function checkAdmin(userService, $q, $location) {
+        var deferred = $q.defer()
+
+        userService
+            .checkAdmin()
+            .then(function (user) {
+                if (user == '0') {
+                    deferred.reject()
+                    $location.url('/')
+                } else {
+                    deferred.resolve()
                 }
             })
 

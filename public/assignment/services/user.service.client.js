@@ -16,6 +16,7 @@
             api.updateUser = updateUser
             api.deleteUser = deleteUser
             api.checkLoggedIn = checkLoggedIn
+            api.checkAdmin = checkAdmin
 
             return api
 
@@ -89,6 +90,14 @@
                     .then(function (response) {  // will response back either
                         return response.data     // - currentUser
                     })                           // - '0'
+            }
+
+            function checkAdmin() {
+                var url = '/api/assignment/checkAdmin'
+                return $http.get(url)
+                    .then(function (response) {
+                        return response.data
+                    })
             }
         })
 })()

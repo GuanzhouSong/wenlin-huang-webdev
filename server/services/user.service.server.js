@@ -26,6 +26,7 @@ app.get   ('/api/assignment/user', findUserByCredentials)
 app.post   ('/api/assignment/login', passport.authenticate('local'), login)
 app.post   ('/api/assignment/logout', logout)
 app.get    ('/api/assignment/checkLoggedIn', checkLoggedIn)
+app.get    ('/api/assignment/checkAdmin', checkAdmin)
 
 app.get   ('/api/assignment/user/:userId', findUserById)
 app.post  ('/api/assignment/user', createUser)
@@ -59,6 +60,10 @@ function logout(req, res) {
 function checkLoggedIn(req, res) {
     res.send(req.isAuthenticated() ? req.user : '0')  // isAuthenticated() is a convenient function that checks
 }                                                     // if passport has already authenticated the user in the session
+
+function checkAdmin(req, res) {
+    res.send(req.isAuthenticated() && req.user.roles.indexOf('ADMIN') >= 0 ? req.user : '0')
+}
 
 function findUserByCredentials(req, res) {
     var username = req.query['username']

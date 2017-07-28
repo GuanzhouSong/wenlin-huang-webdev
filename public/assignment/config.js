@@ -17,7 +17,9 @@
                 }
             })
             .when('/admin', {
-                templateUrl: 'views/admin/templates/admin.view.client.html',
+                templateUrl: 'views/admin/templates/admin-index.view.client.html',
+                controller: 'adminIndexController',
+                controllerAs: 'model',
                 resolve: {
                     currentUser: checkAdmin
                 }

@@ -30,7 +30,7 @@ app.get    ('/api/assignment/checkAdmin', checkAdmin)
 
 app.get   ('/api/assignment/user/:userId', findUserById)
 app.post  ('/api/assignment/user', createUser)
-app.get  ('/api/assignment/admin/user', findAllUsers)
+app.get  ('/api/assignment/admin/user', isAdmin, findAllUsers)
 app.put   ('/api/assignment/user/:userId', updateUser)
 app.delete('/api/assignment/user/:userId', deleteUser)
 
@@ -140,4 +140,12 @@ function deleteUser(req, res) {
         }, function () {
             res.sendStatus(404)
         })
+}
+
+function isAdmin(req, res, next) {
+    if (req.isAuthenticated() && req.user.roles.indexOf('ADMIN' >= 0)) {
+        next()
+    } else {
+        res.sendStatus(401)
+    }
 }

@@ -9,6 +9,7 @@
             var api = {}
 
             api.registerUser = registerUser
+            api.unregisterUser = unregisterUser
             api.findAllUsers = findAllUsers
             api.findUserById = findUserById
             api.findUserByUserName = findUserByUserName
@@ -24,6 +25,14 @@
             function registerUser(user) {
                 var url = '/api/assignment/user'
                 return $http.post(url, user)
+                    .then(function (response) {
+                        return response.data
+                    })
+            }
+
+            function unregisterUser(userId) {
+                var url = '/api/assignment/user/' + userId
+                return $http.delete(url)
                     .then(function (response) {
                         return response.data
                     })
@@ -86,7 +95,7 @@
             }
 
             function deleteUser(userId) {
-                var url = '/api/assignment/user/' + userId
+                var url = '/api/assignment/admin/user/' + userId
                 return $http.delete(url)
                     .then(function (response) {
                         return response.data

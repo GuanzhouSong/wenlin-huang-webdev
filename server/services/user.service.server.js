@@ -29,10 +29,11 @@ app.get    ('/api/assignment/checkLoggedIn', checkLoggedIn)
 app.get    ('/api/assignment/checkAdmin', checkAdmin)
 
 app.get   ('/api/assignment/user/:userId', findUserById)
-app.post  ('/api/assignment/user', createUser)
+app.post  ('/api/assignment/user', registerUser)
+app.delete('/api/assignment/user/:userId', unregisterUser)
 app.get  ('/api/assignment/admin/user', isAdmin, findAllUsers)
 app.put   ('/api/assignment/user/:userId', updateUser)
-app.delete('/api/assignment/user/:userId', deleteUser)
+app.delete('/api/assignment/admin/user/:userId', isAdmin, deleteUser)
 
 function localStrategy(username, password, done) {
     userModel
@@ -109,7 +110,7 @@ function findUserById(req, res) {
         })
 }
 
-function createUser(req, res) {
+function registerUser(req, res) {
     var user = req.body
     userModel
         .createUser(user)
@@ -117,6 +118,16 @@ function createUser(req, res) {
             req.logIn(user, function (status) {
                 res.send(status)
             })
+        })
+}
+
+function unregisterUser(req, res) {
+    var userId = req.params['userId']
+    userModel
+        .deleteUser(userId)
+        .then(function () {
+            req.logout()
+            res.send(200)
         })
 }
 
@@ -143,7 +154,7 @@ function deleteUser(req, res) {
 }
 
 function isAdmin(req, res, next) {
-    if (req.isAuthenticated() && req.user.roles.indexOf('ADMIN' >= 0)) {
+    if (req.isAuthenticated() && req.user.roles.indexOf('ADMIN') >= 0) {
         next()
     } else {
         res.sendStatus(401)

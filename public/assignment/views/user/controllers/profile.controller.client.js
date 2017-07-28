@@ -10,7 +10,7 @@
     function profileController($location, userService, currentUser) {
         var model = this
         model.updateUser = updateUser
-        model.deleteUser = deleteUser
+        model.unregisterUser = unregisterUser
         model.logout = logout
 
         init()
@@ -36,10 +36,10 @@
                 })
         }
 
-        function deleteUser(userId) {
+        function unregisterUser() {
             if (!confirm('Are you sure to destroy your account?'))  return
             userService
-                .deleteUser(userId)
+                .unregisterUser(currentUser._id)
                 .then(function () {
                     $location.url('/login')
                 }, function () {

@@ -9,12 +9,15 @@
     function configuration($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'views/home/home.html',
+                templateUrl: 'views/home/home.view.client.html',
                 controller: 'homeController',
                 controllerAs: 'model',
                 resolve: {
                     currentUser: checkLoggedIn
                 }
+            })
+            .when('/admin', {
+                templateUrl: 'views/admin/admin.view.client.html'
             })
     }
 

@@ -19,6 +19,7 @@ userModel.deleteWebsite = deleteWebsite  // removes the website to in website[] 
 module.exports = userModel
 
 function createUser(user) {
+    user.roles = ['USER']
     return userModel.create(user)
 }
 

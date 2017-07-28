@@ -17,7 +17,15 @@
                 }
             })
             .when('/admin', {
-                templateUrl: 'views/admin/admin.view.client.html',
+                templateUrl: 'views/admin/templates/admin.view.client.html',
+                resolve: {
+                    currentUser: checkAdmin
+                }
+            })
+            .when('/admin/users', {
+                templateUrl: 'views/admin/templates/admin-users.view.client.html',
+                controller: 'adminUsersController',
+                controllerAs: 'model',
                 resolve: {
                     currentUser: checkAdmin
                 }

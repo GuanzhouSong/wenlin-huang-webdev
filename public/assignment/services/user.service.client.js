@@ -9,6 +9,7 @@
             var api = {}
 
             api.registerUser = registerUser
+            api.findAllUsers = findAllUsers
             api.findUserById = findUserById
             api.findUserByUserName = findUserByUserName
             api.login = login
@@ -23,6 +24,14 @@
             function registerUser(user) {
                 var url = '/api/assignment/user'
                 return $http.post(url, user)
+                    .then(function (response) {
+                        return response.data
+                    })
+            }
+
+            function findAllUsers() {
+                var url = '/api/assignment/admin/user'
+                return $http.get(url)
                     .then(function (response) {
                         return response.data
                     })

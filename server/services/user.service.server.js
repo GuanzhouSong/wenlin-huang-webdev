@@ -30,6 +30,7 @@ app.get    ('/api/assignment/checkAdmin', checkAdmin)
 
 app.get   ('/api/assignment/user/:userId', findUserById)
 app.post  ('/api/assignment/user', createUser)
+app.get  ('/api/assignment/admin/user', findAllUsers)
 app.put   ('/api/assignment/user/:userId', updateUser)
 app.delete('/api/assignment/user/:userId', deleteUser)
 
@@ -86,6 +87,14 @@ function findUserByCredentials(req, res) {
                 }
             })
     }
+}
+
+function findAllUsers(req, res) {
+    userModel
+        .findAllUsers()
+        .then(function (users) {
+            res.json(users)
+        })
 }
 
 function findUserById(req, res) {

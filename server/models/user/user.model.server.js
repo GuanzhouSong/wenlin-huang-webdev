@@ -11,6 +11,7 @@ userModel.findUserById = findUserById
 userModel.findAllUsers = findAllUsers
 userModel.findUserByUsername = findUserByUsername
 userModel.findUserByCredentials = findUserByCredentials
+userModel.findUserByGoogleId = findUserByGoogleId
 userModel.updateUser = updateUser
 userModel.deleteUser = deleteUser
 userModel.addWebsite = addWebsite        // adds the website to the website[] in user
@@ -20,7 +21,7 @@ module.exports = userModel
 
 function createUser(user) {
     if (!user.roles || user.roles.length === 0) {
-        user.roles = ['User']
+        user.roles = ['USER']
     }
     return userModel.create(user)
 }
@@ -43,6 +44,12 @@ function findUserByCredentials(username, password) {
     return userModel.findOne({
         username: username,
         password: password
+    })
+}
+
+function findUserByGoogleId(googleId) {
+    return userModel.findOne({
+        'google.id': googleId
     })
 }
 

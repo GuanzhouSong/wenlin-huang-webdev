@@ -6,8 +6,7 @@ var app = require('../../express')
 var userModel = require('../models/user/user.model.server')
 
 var passport = require('passport')
-var LocalStrategy = require('passport-local').Strategy
-passport.use(new LocalStrategy(localStrategy))
+
 passport.serializeUser(function (user, done) {
      done(null, user._id)
 })
@@ -22,19 +21,26 @@ passport.deserializeUser(function (_id, done) {
         })
 })
 
+/****************************** URL Endpoints *********************************/
+
 app.get   ('/api/assignment/user', findUserByCredentials)
-app.post   ('/api/assignment/login', passport.authenticate('local'), login)
-app.post   ('/api/assignment/logout', logout)
-app.get    ('/api/assignment/checkLoggedIn', checkLoggedIn)
-app.get    ('/api/assignment/checkAdmin', checkAdmin)
+app.post  ('/api/assignment/login', passport.authenticate('local'), login)
+app.post  ('/api/assignment/logout', logout)
+app.get   ('/api/assignment/checkLoggedIn', checkLoggedIn)
+app.get   ('/api/assignment/checkAdmin', checkAdmin)
 
 app.get   ('/api/assignment/user/:userId', findUserById)
 app.post  ('/api/assignment/user', registerUser)
 app.delete('/api/assignment/user/:userId', unregisterUser)
-app.get  ('/api/assignment/admin/user', isAdmin, findAllUsers)
+app.get   ('/api/assignment/admin/user', isAdmin, findAllUsers)
 app.put   ('/api/assignment/user/:userId', updateUser)
 app.delete('/api/assignment/admin/user/:userId', isAdmin, deleteUser)
 
+
+/****************************** Local Strategy *********************************/
+
+var LocalStrategy = require('passport-local').Strategy
+passport.use(new LocalStrategy(localStrategy))
 function localStrategy(username, password, done) {
     userModel
         .findUserByCredentials(username, password)
@@ -42,12 +48,73 @@ function localStrategy(username, password, done) {
             function(user) {
                 if (user)  return done(null, user)
                 return done(null, false)  // 如果身份验证失败, 则 false 会直接导致请求中断,
-            },                             // 返回 401 Unauthorized; 否则继续执行之后的 login 函数
+            },                             // 返回 401 Unauthorized 否则继续执行之后的 login 函数
             function(err) {
                 return done(err)
             }
         )
 }
+
+/****************************** Google Strategy *********************************/
+
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
+
+var googleConfig = {
+    clientID     : process.env.GOOGLE_CLIENT_ID,
+    clientSecret : process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL  : process.env.GOOGLE_CALLBACK_URL
+}
+
+passport.use(new GoogleStrategy(googleConfig, googleStrategy))
+app.get('/auth/google',               // redirects to Google, asking for profile and email
+    passport.authenticate('google', {
+        scope : ['profile', 'email']
+    }))
+app.get('/auth/google/callback',      // Google will call this url back and redirect for success/failure
+    passport.authenticate('google', {
+        successRedirect: '/assignment/index.html#!/profile',
+        failureRedirect: '/assignment/index.html#!/login'
+    }))
+
+function googleStrategy(token, refreshToken, profile, done) {
+    userModel
+        .findUserByGoogleId(profile.id)
+        .then(
+            function(user) {
+                if (user) {
+                    return done(null, user)
+                } else {
+                    var email = profile.emails[0].value
+                    var emailParts = email.split("@")
+                    var newGoogleUser = {
+                        username:  emailParts[0],
+                        firstName: profile.name.givenName,
+                        lastName:  profile.name.familyName,
+                        email:     email,
+                        google: {
+                            id:    profile.id,
+                            token: token
+                        }
+                    }
+                    return userModel.createUser(newGoogleUser)
+                }
+            },
+            function(err) {
+                if (err) return done(err)
+            }
+        )
+        .then(
+            function(user) {
+                return done(null, user)
+            },
+            function(err) {
+                if (err) return done(err)
+            }
+        )
+}
+
+
+/****************************** Function Declarations *********************************/
 
 function login(req, res) {
     var user = req.user

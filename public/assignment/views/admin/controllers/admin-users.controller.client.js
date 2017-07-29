@@ -49,15 +49,15 @@
         }
 
         function upsertUser(user) {
-            var rolesArr = []
-            if (user.roles) {
+            if (!user.roles) {
+                user.roles = ['USER']
+            } else if (typeof user.roles === 'string') {
+                var rolesArr = []
                 user.roles.split(',')
                     .map(function (t) {
                         rolesArr.push(t.trim().toUpperCase())
                     })
                 user.roles = rolesArr
-            } else {
-                user.roles = ['USER']
             }
             return userService
                 .upsertUser(user)

@@ -16,6 +16,11 @@
         model.createPage = createPage
 
         function createPage(websiteId, page) {
+            if (!page || !page.name || page.name === '') {
+                model.error = 'Page name is required.'
+                return
+            }
+
             pageService
                 .createPage(websiteId, page)
                 .then(function () {

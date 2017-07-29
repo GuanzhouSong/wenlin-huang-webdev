@@ -12,6 +12,10 @@
     </div>
 </nav>
 
+<div class="alert alert-danger" ng-show="model.error">
+    {{ model.error }}
+</div>
+
 <div class="container-fluid">
     <form class="form-element-margin">
         <label for="name">Name</label>

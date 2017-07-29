@@ -40,6 +40,11 @@
         }
 
         function updateWebsite(updatedWebsite) {
+            if (!updatedWebsite || !updatedWebsite.name || updatedWebsite.name === '') {
+                model.error = 'Website name is required.'
+                return
+            }
+
             websiteService
                 .updateWebsite(updatedWebsite)
                 .then(function () {

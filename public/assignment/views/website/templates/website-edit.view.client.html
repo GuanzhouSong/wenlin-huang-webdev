@@ -11,6 +11,9 @@
         </a>
     </div>
     <div class="container-fluid col-sm-7">
+        <a class="text-white navbar-brand" href="#!/website">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
         <div class="text-white navbar-brand text-bold">
             Edit Website
         </div>
@@ -31,6 +34,10 @@
         <span class="vertical-divider-right"></span>
 
         <div class="col-sm-7">
+            <div class="alert alert-danger" ng-show="model.error">
+                {{ model.error }}
+            </div>
+
             <label for="name">Website Name</label>
             <input type="text" class="form-control" id="name" placeholder="Name" ng-model="model.website.name">
             <label for="description">Website Description</label>

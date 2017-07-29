@@ -24,6 +24,10 @@
         }
 
         function createWebsite(website, userId) {
+            if (!website || !website.name || website.name === '') {
+                model.error = 'Website name is required.'
+                return
+            }
             websiteService
                 .createWebsite(website, userId)
                 .then(function () {

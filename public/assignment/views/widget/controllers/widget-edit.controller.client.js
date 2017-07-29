@@ -28,6 +28,11 @@
         }
 
         function updateWidget(updatedWidget) {
+            if (!updatedWidget || !updatedWidget.name || updatedWidget.name === '') {
+                model.error = 'Widget name is required.'
+                return
+            }
+
             widgetService
                 .updateWidget(updatedWidget)
                 .then(function () {

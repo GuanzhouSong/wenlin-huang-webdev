@@ -10,6 +10,9 @@
         </div>
 
         <div class="container-fluid col-sm-5">
+            <a class="text-white navbar-brand glyphicon glyphicon-chevron-left"
+               href="#!/website">
+            </a>
             <div class="text-white navbar-brand text-bold">
                 New Website
             </div>
@@ -21,9 +24,7 @@
     </nav>
 </div>
 
-
 <div class="container-fluid">
-
     <div class="row">
         <div class="col-sm-7 hidden-xs"> <!-- col hidden in xs, 5:7 in sm & above -->
             <div class="container-fluid" ng-include="'views/website/templates/common/website-list-body.view.client.html'"></div>
@@ -32,8 +33,12 @@
         <span class="vertical-divider-right"></span>
 
         <div class="col-sm-5">
+            <div class="alert alert-danger" ng-show="model.error">
+                {{ model.error }}
+            </div>
+
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Name" ng-model="website.name">
+            <input type="text" class="form-control" id="name" placeholder="Name" ng-model="website.name" required>
             <label for="description">Description</label>
             <textarea id="description" class="form-control" cols="30" rows="10" placeholder="Description"
                       ng-model="website.description"></textarea>
@@ -41,7 +46,6 @@
 
     </div>
 </div>
-
 
 <nav class="navbar navbar-fixed-bottom navbar-blue">
     <div class="container-fluid">

@@ -9,6 +9,6 @@
         <label for="size">Size</label>
         <input type="text" class="form-control" placeholder="Size" id="size"
                ng-model="model.widget.size" required>
-        <a ng-show="model.widget" ng-click="model.deleteWidget(model.widgetId)" class="btn btn-block btn-danger">Delete</a>
+        <a ng-show="model.widget._id" ng-click="model.deleteWidget(model.widgetId)" class="btn btn-block btn-danger">Delete</a>
     </form>
 </div>

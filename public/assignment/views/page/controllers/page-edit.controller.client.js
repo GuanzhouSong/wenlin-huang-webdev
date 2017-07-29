@@ -32,6 +32,11 @@
         }
 
         function updatePage(updatedPage) {
+            if (!updatedPage || !updatedPage.name || updatedPage.name === '') {
+                model.error = 'Page name is required.'
+                return
+            }
+
             pageService
                 .updatePage(updatedPage)
                 .then(function () {

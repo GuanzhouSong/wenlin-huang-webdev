@@ -1,11 +1,17 @@
+<label for="name">Name</label>
+<input type="text" class="form-control" placeholder="Blog" id="name" required
+       ng-model="model.widget.name">
+
 <label for="text">Text</label>
-<input id="text" class="form-control" ng-model="model.widget.text"/>
+<input id="text" class="form-control" ng-model="model.widget.text" placeholder="This is a blog."/>
 
 <label for="rows">Rows</label>
-<input id="rows" class="form-control" ng-model="model.widget.rows" type="number"/>
+<input id="rows" class="form-control" ng-model="model.widget.rows" type="number" placeholder="2"/>
 
 <label for="placeholder">Placeholder</label>
 <input id="placeholder" class="form-control" ng-model="model.widget.placeholder"/>
 
 <label for="formatted">Formatted</label>
 <input id="formatted" ng-model="model.widget.formatted" type="checkbox"/>
+
+<a ng-show="model.widget._id" ng-click="model.deleteWidget(model.widgetId)" class="btn btn-block btn-danger">Delete</a>

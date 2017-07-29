@@ -24,6 +24,11 @@
         }
 
         function createWidget(pageId, widget) {
+            if (!widget || !widget.name || widget.name === '') {
+                model.error = 'Widget name is required.'
+                return
+            }
+
             widgetService
                 .createWidget(pageId, widget)
                 .then(function () {

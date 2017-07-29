@@ -13,13 +13,7 @@
 
         function registerUser(username, password, passwordConfirm) {
 
-            if (username == null || username === '') {
-                model.error = 'Username is required.'
-                return
-            }
-            if (password == null || password === '' || password !== passwordConfirm) {
-                model.error = password !== passwordConfirm ? 'Passwords do not match.'
-                                                           : 'Password is required.'
+            if (model.error = userService.validateCredentials(username, password, passwordConfirm)) {
                 return
             }
 
@@ -41,5 +35,6 @@
                 })
 
         }
+
     }
 })()

@@ -20,8 +20,8 @@
         }
 
         function updateUser(userId, user) {
-            if (user.username == null || user.email == null || user.firstName == null || user.lastName == null) {
-                model.error = "No empty fields allowed."
+            model.error = userService.validateCredentials(user.username)
+            if (model.error) {
                 delete model.message
                 return
             }

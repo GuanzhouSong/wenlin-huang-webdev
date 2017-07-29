@@ -10,6 +10,7 @@
 
             api.registerUser = registerUser
             api.unregisterUser = unregisterUser
+            api.validateCredentials = validateCredentials
             api.findAllUsers = findAllUsers
             api.findUserById = findUserById
             api.findUserByUserName = findUserByUserName
@@ -129,5 +130,27 @@
                         return response.data
                     })
             }
+
+            function validateCredentials(username, password, passwordConfirm) {
+                var model = {}
+                if (Array.from(arguments).map(function (field) {
+                        return field == null || field === ''
+                    }).reduce(function (res, bool) { return res || bool }, false)) {
+
+                    if (arguments.length === 1) {
+                        model.error = 'Username is required.'      // profile update page
+                    } else {
+                        model.error = 'All fields are required.'   // register page
+                    }
+                } else if (arguments.length > 1) {
+                    if (password !== passwordConfirm) {
+                        model.error = 'Passwords do not match.'
+                    } else if (password.length < 6) {
+                        model.error = 'Password must be more than 6 characters.'
+                    }
+                }
+                return model.error
+            }
+
         })
 })()

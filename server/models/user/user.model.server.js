@@ -19,7 +19,9 @@ userModel.deleteWebsite = deleteWebsite  // removes the website to in website[] 
 module.exports = userModel
 
 function createUser(user) {
-    user.roles = ['USER']
+    if (!user.roles || user.roles.length === 0) {
+        user.roles = ['User']
+    }
     return userModel.create(user)
 }
 
@@ -45,8 +47,11 @@ function findUserByCredentials(username, password) {
 }
 
 function updateUser(userId, newUser) {
-    delete newUser.password  // to disallow certain attributes you don't want to update in newUser
-    return userModel.update({ _id: userId }, { $set: newUser })
+    return userModel.update(
+        { _id: userId },
+        { $set: newUser },
+        { runValidators: true }  // Mongoose does not validate data on update by default
+    )
 }
 
 function deleteUser(userId) {

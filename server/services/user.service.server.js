@@ -114,11 +114,21 @@ function registerUser(req, res) {
     var user = req.body
     userModel
         .createUser(user)
-        .then(function (user) {
-            req.logIn(user, function (status) {
-                res.send(status)
-            })
-        })
+        .then(
+            function (user) {
+                if (req.user && req.user.roles.indexOf('ADMIN') >= 0) {
+                    res.sendStatus(200)  // Admins creating users from admin portal
+                } else {
+                    req.logIn(user, function (status) {
+                        res.send(status)
+                    })
+                }
+            },
+
+            function (obj) {
+                res.status(403).send(obj.errors || obj)
+            }
+        )
 }
 
 function unregisterUser(req, res) {
@@ -137,8 +147,8 @@ function updateUser(req, res) {
         .updateUser(newUser._id, newUser)
         .then(function (status) {
             res.send(status)
-        }, function (err) {
-            res.status(500).send(err)
+        }, function (obj) {
+            res.status(403).send(obj.errors)
         })
 }
 

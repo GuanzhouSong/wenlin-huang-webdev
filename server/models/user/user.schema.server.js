@@ -8,13 +8,17 @@ var userSchema = mongoose.Schema({
     roles: [{
        type: String,
        default: 'USER',
-       enum: ['USER', 'FACULTY', 'STUDENT', 'ADMIN']
+       enum: ['USER', 'FACULTY', 'STUDENT', 'ADMIN'],
     }],
     username: {
         type: String,
-        unique: true
+        unique: true,
+        required: true
     },
-    password: String,
+    password: {
+        type: String,
+        required: true
+    },
     firstName: String,
     lastName: String,
     email: String,

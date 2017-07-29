@@ -5,11 +5,39 @@
         <ul class="list-group">
             <li class="list-group-item active">
                 <div class="row">
-                    <div class="col-sm-2">Username</div>
-                    <div class="col-sm-3">Password</div>
-                    <div class="col-sm-4">Websites</div>
-                    <div class="col-sm-2">User Roles</div>
+                    <div class="col-sm-2">
+                        <label for="username">Username</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="password">Password</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="websites">Websites</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label for="roles">User Roles</label>
+                    </div>
                     <div class="col-sm-1">
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item listing-users">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <input type="text" id="username" class="form-control" ng-model="model.user.username">
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" id="password" class="form-control" ng-model="model.user.password">
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="text" id="websites" class="form-control" ng-model="model.user.websites" ng-readonly=true>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" id="roles" class="form-control" ng-model="model.user.roles">
+                    </div>
+                    <div class="col-sm-1">
+                        <span class="glyphicon glyphicon-remove pull-right" ng-click="model.user={};"></span>
+                        <span class="glyphicon glyphicon-ok pull-right" ng-click="model.upsertUser(model.user)"></span>
                     </div>
                 </div>
             </li>
@@ -22,6 +50,9 @@
                     <div class="col-sm-1">
                         <span ng-click="model.deleteUser(user._id)"
                               class="glyphicon glyphicon-remove pull-right">
+                        </span>
+                        <span ng-click="model.selectUser(user._id)"
+                              class="glyphicon glyphicon-pencil pull-right">
                         </span>
                     </div>
                 </div>

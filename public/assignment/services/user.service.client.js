@@ -16,6 +16,7 @@
             api.login = login
             api.logout = logout
             api.updateUser = updateUser
+            api.upsertUser = upsertUser
             api.deleteUser = deleteUser
             api.checkLoggedIn = checkLoggedIn
             api.checkAdmin = checkAdmin
@@ -91,6 +92,17 @@
                     })
                     .catch(function (response) {
                         throw response.data
+                    })
+            }
+
+            function upsertUser(user) {
+                var promiseObj = user._id ? updateUser(user._id, user) : registerUser(user)
+                return promiseObj
+                    .then(function (response) {
+                        return response.data
+                    })
+                    .catch(function (response) {
+                        throw response
                     })
             }
 

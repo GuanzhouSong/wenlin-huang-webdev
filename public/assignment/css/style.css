@@ -15,6 +15,10 @@ a[ng-click]:hover {
     cursor: pointer;
 }
 
+.listing-users span.glyphicon.pull-right {
+    margin-top: 5px;
+}
+
 .navbar-blue {
     background-color: #337ab7;
 }

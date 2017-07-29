@@ -12,6 +12,7 @@ userModel.findAllUsers = findAllUsers
 userModel.findUserByUsername = findUserByUsername
 userModel.findUserByCredentials = findUserByCredentials
 userModel.findUserByGoogleId = findUserByGoogleId
+userModel.findUserByFacebookId = findUserByFacebookId
 userModel.updateUser = updateUser
 userModel.deleteUser = deleteUser
 userModel.addWebsite = addWebsite        // adds the website to the website[] in user
@@ -50,6 +51,12 @@ function findUserByCredentials(username, password) {
 function findUserByGoogleId(googleId) {
     return userModel.findOne({
         'google.id': googleId
+    })
+}
+
+function findUserByFacebookId(facebookId) {
+    return userModel.findOne({
+        'facebook.id': facebookId
     })
 }
 

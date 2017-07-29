@@ -24,6 +24,10 @@ var userSchema = mongoose.Schema({
         id: String,
         token: String
     },
+    facebook: {
+        id: String,
+        token: String
+    },
     email: String,
     phone: String,
     dateCreated: {

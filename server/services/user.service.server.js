@@ -36,7 +36,6 @@ app.get   ('/api/assignment/admin/user', isAdmin, findAllUsers)
 app.put   ('/api/assignment/user/:userId', updateUser)
 app.delete('/api/assignment/admin/user/:userId', isAdmin, deleteUser)
 
-
 /****************************** Local Strategy *********************************/
 
 var LocalStrategy = require('passport-local').Strategy
@@ -72,7 +71,7 @@ app.get('/auth/google',               // redirects to Google, asking for profile
     }))
 app.get('/auth/google/callback',      // Google will call this url back and redirect for success/failure
     passport.authenticate('google', {
-        successRedirect: '/assignment/index.html#!/profile',
+        successRedirect: '/assignment/index.html#!/',
         failureRedirect: '/assignment/index.html#!/login'
     }))
 
@@ -113,6 +112,64 @@ function googleStrategy(token, refreshToken, profile, done) {
         )
 }
 
+/****************************** Facebook Strategy *********************************/
+
+var FacebookStrategy = require('passport-facebook').Strategy;
+
+var facebookConfig = {
+    clientID     : process.env.FACEBOOK_CLIENT_ID,
+    clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
+    callbackURL  : process.env.FACEBOOK_CALLBACK_URL,
+    profileFields: ['id', 'emails', 'name']
+}
+
+passport.use(new FacebookStrategy(facebookConfig, facebookStrategy))
+app.get('/auth/facebook',               // redirects to Facebook, asking for profile and email
+    passport.authenticate('facebook', {
+        scope : ['email']
+    }))
+app.get('/auth/facebook/callback',      // Facebook will call this url back and redirect for success/failure
+    passport.authenticate('facebook', {
+        successRedirect: '/assignment/index.html#!/',
+        failureRedirect: '/assignment/index.html#!/login'
+    }))
+
+function facebookStrategy(token, refreshToken, profile, done) {
+    userModel
+        .findUserByFacebookId(profile.id)
+        .then(
+            function(user) {
+                if (user) {
+                    return done(null, user)
+                } else {
+                    var email = profile.emails[0].value
+                    var emailParts = email.split("@")
+                    var newGoogleUser = {
+                        username:  emailParts[0],
+                        firstName: profile.name.givenName,
+                        lastName:  profile.name.familyName,
+                        email:     email,
+                        facebook: {
+                            id:    profile.id,
+                            token: token
+                        }
+                    }
+                    return userModel.createUser(newGoogleUser)
+                }
+            },
+            function(err) {
+                if (err) return done(err)
+            }
+        )
+        .then(
+            function(user) {
+                return done(null, user)
+            },
+            function(err) {
+                if (err) return done(err)
+            }
+        )
+}
 
 /****************************** Function Declarations *********************************/
 

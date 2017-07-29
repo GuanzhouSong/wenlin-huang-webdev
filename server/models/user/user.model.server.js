@@ -10,7 +10,6 @@ userModel.createUser = createUser
 userModel.findUserById = findUserById
 userModel.findAllUsers = findAllUsers
 userModel.findUserByUsername = findUserByUsername
-userModel.findUserByCredentials = findUserByCredentials
 userModel.findUserByGoogleId = findUserByGoogleId
 userModel.findUserByFacebookId = findUserByFacebookId
 userModel.updateUser = updateUser
@@ -38,13 +37,6 @@ function findAllUsers() {
 function findUserByUsername(username) {
     return userModel.findOne({
         username: username
-    })
-}
-
-function findUserByCredentials(username, password) {
-    return userModel.findOne({
-        username: username,
-        password: password
     })
 }
 

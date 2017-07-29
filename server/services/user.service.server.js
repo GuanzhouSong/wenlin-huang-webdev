@@ -21,6 +21,8 @@ passport.deserializeUser(function (_id, done) {
         })
 })
 
+var bcrypt = require("bcrypt-nodejs")
+
 /****************************** URL Endpoints *********************************/
 
 app.get   ('/api/assignment/user', findUserByCredentials)
@@ -42,12 +44,14 @@ var LocalStrategy = require('passport-local').Strategy
 passport.use(new LocalStrategy(localStrategy))
 function localStrategy(username, password, done) {
     userModel
-        .findUserByCredentials(username, password)
+        .findUserByUsername(username)
         .then(
             function(user) {
-                if (user)  return done(null, user)
-                return done(null, false)  // 如果身份验证失败, 则 false 会直接导致请求中断,
-            },                             // 返回 401 Unauthorized 否则继续执行之后的 login 函数
+                if (user && bcrypt.compareSync(password, user.password)) {
+                    return done(null, user)
+                }
+                return done(null, false)   // 如果身份验证失败, 则 false 会直接导致请求中断,
+            },                             // 返回 401 Unauthorized, 否则继续执行之后的 login 函数
             function(err) {
                 return done(err)
             }
@@ -193,15 +197,7 @@ function checkAdmin(req, res) {
 
 function findUserByCredentials(req, res) {
     var username = req.query['username']
-    var password = req.query['password']
-    if (username && password) {  // finding a particular user based on username & password passed using queryString
-        userModel
-            .findUserByCredentials(username, password)
-            .then(function (user) {
-                if (user)  res.json(user)
-                else       res.sendStatus(404)
-            })
-    } else if (username) {
+    if (username) {
         userModel
             .findUserByUsername(username)
             .then(function (user) {
@@ -236,6 +232,7 @@ function findUserById(req, res) {
 
 function registerUser(req, res) {
     var user = req.body
+    user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10));
     userModel
         .createUser(user)
         .then(

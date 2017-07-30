@@ -1,23 +1,23 @@
 <div ng-include="'views/home/home-navbar.view.client.html'"></div>
 
 <div class="container-fluid">
-    <h1 href="views/user/login.view.client.html">Assignment Releases</h1>
-</div>
+    <div class="jumbotron">
+        <h1 href="views/user/login.view.client.html">Assignment Releases</h1>
+        <div>
+            <p>Login with an admin user <code>(u: admini, p: admini)</code> to check out the admin console</p>
+            <a class="btn btn-primary" href="https://webdev-wenlin.herokuapp.com/assignment/index.html#!/">
+                View Assignments Home Page on Heroku
+            </a>
+        </div>
+    </div>
 
-<div class="container-fluid">
     <div class="list-group">
         <ul class="list-group">
-            <li class="list-group-item" ng-repeat="i in [1,2,3,4,5]">
+            <li class="list-group-item" ng-repeat="i in [1,2,3,4,5,6]">
                 <a href="https://github.com/jeremylinlin/wenlin-huang-webdev/releases/tag/v{{i}}.0">
                     Assignment {{i}}
                 </a>
             </li>
         </ul>
-    </div>
-
-    <div style="text-align: center">
-        <a class="btn btn-primary" href="https://webdev-wenlin.herokuapp.com/assignment/index.html#!/">
-            View Assignments Home Page on Heroku
-        </a>
     </div>
 </div>
